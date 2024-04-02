@@ -1,0 +1,14 @@
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/bin/Debug/net8.0/Eencyclopedia.Domain.deps.json
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/bin/Debug/net8.0/Eencyclopedia.Domain.runtimeconfig.json
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/bin/Debug/net8.0/Eencyclopedia.Domain.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/bin/Debug/net8.0/Eencyclopedia.Domain.pdb
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.csproj.AssemblyReference.cache
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.AssemblyInfoInputs.cache
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.AssemblyInfo.cs
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.csproj.CoreCompileInputs.cache
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/refint/Eencyclopedia.Domain.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.pdb
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.genruntimeconfig.cache
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/ref/Eencyclopedia.Domain.dll

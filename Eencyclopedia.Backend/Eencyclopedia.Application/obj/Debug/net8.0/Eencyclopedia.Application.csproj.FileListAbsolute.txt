@@ -1,0 +1,17 @@
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Application.deps.json
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Application.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Application.pdb
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclopedia.Application.csproj.AssemblyReference.cache
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclopedia.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclopedia.Application.AssemblyInfoInputs.cache
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclopedia.Application.AssemblyInfo.cs
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclopedia.Application.csproj.CoreCompileInputs.cache
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclopedia.Application.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/refint/Eencyclopedia.Application.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclopedia.Application.pdb
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/ref/Eencyclopedia.Application.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Domain.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Infrastructure.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Domain.pdb
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Infrastructure.pdb
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclo.FE3ADF12.Up2Date
