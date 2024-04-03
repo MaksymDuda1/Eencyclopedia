@@ -1,6 +1,7 @@
 using System.Reflection.Metadata;
 using System.Text;
 using Eencyclopedia.Application.Abstractions;
+using Eencyclopedia.Application.MappingProfile;
 using Eencyclopedia.Application.Models;
 using Eencyclopedia.Application.Services;
 using Eencyclopedia.Domain.Abstractions;
@@ -20,7 +21,7 @@ var key = Encoding.ASCII.GetBytes(jwtSecret);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddScoped(typeof(IBaseRepository<>),typeof(BaseRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -28,6 +29,9 @@ builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 
 builder.Services.AddScoped(typeof(Lazy<>), typeof(LazyInstance<>));
 

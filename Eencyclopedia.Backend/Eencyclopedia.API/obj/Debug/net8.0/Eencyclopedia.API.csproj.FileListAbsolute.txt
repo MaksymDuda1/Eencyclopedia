@@ -150,3 +150,4 @@
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/Eencyclopedia.API.genruntimeconfig.cache
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/ref/Eencyclopedia.API.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/AutoMapper.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/Eencyclopedia.API.sourcelink.json
