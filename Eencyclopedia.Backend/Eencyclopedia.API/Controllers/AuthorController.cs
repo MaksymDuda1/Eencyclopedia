@@ -19,20 +19,50 @@ public class AuthorController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<AuthorDto>>> GetAllAuthors()
     {
-        var authors = await _authorService.GetAllAsync();
-        
+        var authors = await _authorService.GetAllAuthors();
+
         return Ok(authors);
     }
 
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<AuthorDto>> GetSingle(Guid id)
+    {
+        try
+        {
+            var author = await _authorService.GetSingleAuthor(id);
+
+            return Ok(author);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
     [HttpPost]
-    public async Task<IActionResult> CreateAuthor([FromBody] AuthorDto request)
+    public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorDto request)
     {
         await _authorService.CreateAuthor(request);
-        
+
         return Ok();
     }
 
-    [HttpDelete]
+    [HttpPut]
+    public async Task<IActionResult> UpdateAuthor([FromBody] UpdateAuthorDto request)
+    {
+        try
+        {
+            await _authorService.UpdateAuthor(request);
+
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAuthor(Guid id)
     {
         await _authorService.Delete(id);

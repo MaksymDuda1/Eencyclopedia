@@ -18,16 +18,70 @@ public class BookController : ControllerBase
     [HttpGet]
     public async Task<List<BookDto>> GetAllBooks()
     {
-        var books = await _bookService.GetAllBooksAsync();
+        var books = await _bookService.GetAllBooks();
 
         return books;
     }
 
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<BookDto>> GetSingle(Guid id)
+    {
+        var book = await _bookService.GetSingleBook(id);
+
+        return Ok(book);
+    }
+
+    [HttpGet("genre")]
+    public async Task<ActionResult<List<BookDto>>> GetBookByGenre([FromBody] GetByGenreDto request)
+    {
+        try
+        {
+            var books = await _bookService.GetByConditionals(request);
+
+            return books;
+        }
+        catch (Exception e)
+        {
+            return NotFound(e.Message);
+        }
+    }
+
     [HttpPost]
-    public async Task<IActionResult> CreateBook([FromBody] BookDto request)
+    public async Task<IActionResult> CreateBook([FromBody] CreateBookDto request)
     {
         await _bookService.CreateBook(request);
 
         return Ok();
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateBook([FromBody] UpdateBookDto request)
+    {
+        try
+        {
+            await _bookService.UpdateBook(request);
+
+            return Ok();
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+            
+        }
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteBook(Guid id)
+    {
+        try
+        {
+            await _bookService.DeleteBook(id);
+            
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 }
