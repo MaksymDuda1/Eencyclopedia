@@ -15,3 +15,8 @@
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Domain.pdb
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Eencyclopedia.Infrastructure.pdb
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclo.FE3ADF12.Up2Date
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/obj/Debug/net8.0/Eencyclopedia.Application.sourcelink.json
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.xml
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.xml

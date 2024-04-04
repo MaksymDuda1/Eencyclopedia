@@ -10,7 +10,13 @@ public class AuthorDto
     [MaxLength(100)]
     public string FullName { get; set; } = null!;
     
-    public DateTime BirthDate { get; set; }
+    public DateOnly BirthDate { get; set; }
+    
+    [MaxLength(1000)]
+    public string Description { get; set; } = null!;
+
+    [MaxLength(200)]
+    public string? Image { get; set; }
 
     public List<Book>? Books { get; set; }
 }

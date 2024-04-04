@@ -1,5 +1,7 @@
+using Eencyclopedia.Domain.Entities;
+
 namespace Eencyclopedia.Domain.Abstractions;
 
-public interface IPublisherRepository
+public interface IPublisherRepository : IBaseRepository<Publisher>
 {
 }

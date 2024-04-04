@@ -23,12 +23,21 @@ namespace Eencyclopedia.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateOnly>("BirthDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -42,7 +51,7 @@ namespace Eencyclopedia.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("AuthorId")
+                    b.Property<Guid?>("AuthorId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -69,7 +78,7 @@ namespace Eencyclopedia.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("PublisherId")
+                    b.Property<Guid?>("PublisherId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid?>("UserId")
@@ -143,13 +152,13 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("798404a1-29f0-4017-8bc0-b5e633d76880"),
+                            Id = new Guid("5d7bbe5f-197a-470e-a94e-6a6ca590e552"),
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("f7ee36d4-cb9f-486b-807f-c1f5302ff45e"),
+                            Id = new Guid("9b9e1da1-4eba-4402-bc71-d876c3ba2023"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -174,6 +183,11 @@ namespace Eencyclopedia.Infrastructure.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -324,14 +338,12 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     b.HasOne("Eencyclopedia.Domain.Entities.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Eencyclopedia.Domain.Entities.Publisher", "Publisher")
                         .WithMany("PublishedBooks")
                         .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Eencyclopedia.Domain.Entities.User", null)
                         .WithMany("FavoriteBooks")

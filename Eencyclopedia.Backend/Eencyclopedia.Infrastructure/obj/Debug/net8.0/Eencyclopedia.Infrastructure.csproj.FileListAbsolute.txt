@@ -15,3 +15,4 @@
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.pdb
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.genruntimeconfig.cache
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/ref/Eencyclopedia.Infrastructure.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.sourcelink.json

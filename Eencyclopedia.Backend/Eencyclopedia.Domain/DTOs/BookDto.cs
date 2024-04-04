@@ -6,8 +6,10 @@ namespace Eencyclopedia.Domain.DTOs;
 
 public class BookDto
 {
+    public Guid Id { get; set; }
+    
     [MaxLength(100)]
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } = null!;   
 
     public string Path { get; set; } = null!;
     
@@ -23,11 +25,11 @@ public class BookDto
     [MaxLength(200)]
     public string? Image { get; set; }
     
-    public Guid PublisherId { get; set; }
+    public Guid? PublisherId { get; set; }
     
-    public Publisher? Publisher { get; set; }
+    public PublisherDto? Publisher { get; set; }
 
-    public Guid AuthorId { get; set; }
+    public Guid? AuthorId { get; set; }
 
-    public Author Author { get; set; } = null!;
+    public AuthorDto? Author { get; set; } 
 }

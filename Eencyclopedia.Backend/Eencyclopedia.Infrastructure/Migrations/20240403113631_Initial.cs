@@ -32,6 +32,7 @@ namespace Eencyclopedia.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -58,7 +59,9 @@ namespace Eencyclopedia.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     FullName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    BirthDate = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: false),
+                    Image = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -197,8 +200,8 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     YearOfEdition = table.Column<int>(type: "INTEGER", nullable: false),
                     PageAmount = table.Column<int>(type: "INTEGER", nullable: false),
                     Image = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true),
-                    PublisherId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    AuthorId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PublisherId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    AuthorId = table.Column<Guid>(type: "TEXT", nullable: true),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -214,13 +217,13 @@ namespace Eencyclopedia.Infrastructure.Migrations
                         column: x => x.AuthorId,
                         principalTable: "Authors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Books_Publishers_PublisherId",
                         column: x => x.PublisherId,
                         principalTable: "Publishers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -228,8 +231,8 @@ namespace Eencyclopedia.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("798404a1-29f0-4017-8bc0-b5e633d76880"), null, "User", "USER" },
-                    { new Guid("f7ee36d4-cb9f-486b-807f-c1f5302ff45e"), null, "Admin", "ADMIN" }
+                    { new Guid("5d7bbe5f-197a-470e-a94e-6a6ca590e552"), null, "User", "USER" },
+                    { new Guid("9b9e1da1-4eba-4402-bc71-d876c3ba2023"), null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

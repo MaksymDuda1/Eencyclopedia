@@ -18,5 +18,7 @@ public interface IBaseRepository<T> where T: class
 
     Task InsertRangeAsync(List<T> entities);
 
+    void Update(T entity);
+
     Task Delete(Guid id);
 }

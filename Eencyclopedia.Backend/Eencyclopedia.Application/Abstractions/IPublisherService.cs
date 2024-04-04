@@ -1,6 +1,6 @@
 using Eencyclopedia.Domain.DTOs;
 
-namespace Eencyclopedia.Application.Services;
+namespace Eencyclopedia.Application.Abstractions;
 
 public interface IPublisherService
 {

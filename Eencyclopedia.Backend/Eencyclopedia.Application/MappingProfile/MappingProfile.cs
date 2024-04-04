@@ -8,8 +8,14 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Book, BookDto>().ReverseMap();
+        CreateMap<CreateBookDto, BookDto>().ReverseMap();
+        CreateMap<UpdateBookDto, BookDto>().ReverseMap();
+        CreateMap<BookDto, Book>().ReverseMap();
+        CreateMap<CreateAuthorDto, AuthorDto>().ReverseMap();
+        CreateMap<UpdateAuthorDto, AuthorDto>().ReverseMap();
         CreateMap<Author, AuthorDto>().ReverseMap();
+        CreateMap<CreatePublisherDto, PublisherDto>().ReverseMap();
+        CreateMap<UpdatePublisherDto, PublisherDto>().ReverseMap();
         CreateMap<Publisher, PublisherDto>().ReverseMap();
     }
 }

@@ -12,3 +12,4 @@
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.pdb
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.genruntimeconfig.cache
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/ref/Eencyclopedia.Domain.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Domain/obj/Debug/net8.0/Eencyclopedia.Domain.sourcelink.json

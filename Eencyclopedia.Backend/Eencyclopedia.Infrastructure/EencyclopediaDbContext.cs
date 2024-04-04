@@ -34,5 +34,24 @@ public class EencyclopediaDbContext : IdentityDbContext<User, Role, Guid>
                     Name = "Admin",
                     NormalizedName = "ADMIN"
                 });
+        
+        modelBuilder.Entity<Book>()
+            .HasOne(b => b.Author)
+            .WithMany(a => a.Books)
+            .HasForeignKey(b => b.AuthorId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+ 
+        modelBuilder.Entity<Author>()
+            .HasMany(a => a.Books)
+            .WithOne(b => b.Author)
+            .HasForeignKey(b => b.AuthorId)
+            .OnDelete(DeleteBehavior.Restrict); 
+        
+        modelBuilder.Entity<Publisher>()
+            .HasMany(p => p.PublishedBooks)
+            .WithOne(b => b.Publisher)
+            .HasForeignKey(b => b.PublisherId)
+            .OnDelete(DeleteBehavior.Restrict); 
     }
 }

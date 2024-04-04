@@ -24,11 +24,11 @@ public class Book
     [MaxLength(200)]
     public string? Image { get; set; }
     
-    public Guid PublisherId { get; set; }
+    public Guid? PublisherId { get; set; }
     
     public Publisher? Publisher { get; set; }
 
-    public Guid AuthorId { get; set; }
+    public Guid? AuthorId { get; set; }
 
-    public Author Author { get; set; } = null!;
+    public Author? Author { get; set; } 
 }

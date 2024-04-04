@@ -6,11 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Eencyclopedia.Infrastructure.Repositories;
 
-public class BaseRepository<T>(EencyclopediaDbContext context) 
+public class BaseRepository<T>(EencyclopediaDbContext _context) 
     : IBaseRepository<T> where T : class
 {
-    private readonly EencyclopediaDbContext _context= context;
-
     public async Task<List<T>> GetAllAsync(
         params Expression<Func<T, object>>[] includes)
     {
@@ -27,7 +25,7 @@ public class BaseRepository<T>(EencyclopediaDbContext context)
     {
         var query = _context.Set<T>()
             .Where(expression)
-            .AsQueryable();
+            .AsNoTracking();
 
         return await includes
             .Aggregate(query, (current, next) => current.Include(next))
@@ -38,15 +36,13 @@ public class BaseRepository<T>(EencyclopediaDbContext context)
         Expression<Func<T, bool>> expression,
         params Expression<Func<T, object>>[] includes)
     {
-        var result = context.Set<T>()
+        var result = _context.Set<T>()
             .Where(expression)
-            .AsQueryable();
+            .AsNoTracking();
 
         return await includes
             .Aggregate(result, (current, next) => current.Include(next))
             .FirstOrDefaultAsync();
-
-
     }
 
     public async Task InsertAsync(T entity)
@@ -59,8 +55,15 @@ public class BaseRepository<T>(EencyclopediaDbContext context)
         await _context.AddRangeAsync(entities);
     }
 
+    public void Update(T entity)
+    {
+         _context.Set<T>().Update(entity);
+    }
+
     public async Task Delete(Guid id)
     {
-        await context.Set<T>().FindAsync(id);
+        var t = await _context.Set<T>().FindAsync(id);
+
+        _context.Remove(t);
     }
 }

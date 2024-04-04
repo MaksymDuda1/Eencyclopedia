@@ -1,9 +1,9 @@
 using System.Security.Claims;
 
-namespace Eencyclopedia.Application.Services;
+namespace Eencyclopedia.Application.Abstractions;
 
 public interface IJwtService
 {
     string CreateToken(IList<Claim> claims);
-    void AddRolesToClaims(List<Claim> claims, IList<string> roles);
+    void AddRolesToClaims(IList<Claim> claims, IList<string> roles);
 }

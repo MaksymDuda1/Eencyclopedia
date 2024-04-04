@@ -14,6 +14,6 @@ public class Publisher
     
     [MaxLength(200)]
     public string? Image { get; set; }
-    
-    public List<Book>? PublishedBooks { get; set; }
+
+    public List<Book>? PublishedBooks { get; set; } = new List<Book>();
 }
