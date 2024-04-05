@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Eencyclopedia.Domain.Entities;
 using Eencyclopedia.Domain.Enums;
 
@@ -30,6 +31,7 @@ public class BookDto
     public PublisherDto? Publisher { get; set; }
 
     public Guid? AuthorId { get; set; }
+    public AuthorDto? Author { get; set; }
 
-    public AuthorDto? Author { get; set; } 
+    [JsonIgnore] public List<UserDto>? Users { get; set; } 
 }

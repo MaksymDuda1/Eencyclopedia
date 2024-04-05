@@ -20,6 +20,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -28,7 +29,12 @@
 
     <ItemGroup>
       <Folder Include="Data\" />
-      <Folder Include="Migrations\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
+        <HintPath>..\..\..\..\.nuget\packages\npgsql.entityframeworkcore.postgresql\8.0.2\lib\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

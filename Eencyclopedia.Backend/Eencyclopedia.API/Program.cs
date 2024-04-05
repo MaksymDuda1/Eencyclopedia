@@ -28,10 +28,12 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IBooksUsersRepository, BooksUsersRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 
@@ -70,8 +72,10 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
-builder.Services.AddDbContext<EencyclopediaDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString(nameof(EencyclopediaDbContext))));
+builder.Services.AddDbContext<EencyclopediaDbContext>(
+    options =>
+        options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(EencyclopediaDbContext))));
+
 
 var app = builder.Build();
 

@@ -11,29 +11,30 @@ public class BookService(IUnitOfWork _unitOfWork, IMapper _mapper) : IBookServic
     public async Task<List<BookDto>> GetAllBooks()
     {
         var books = await _unitOfWork.Books.GetAllAsync(
-            b => b.Author, 
-                b => b.Publisher);
+            b => b.Author,
+            b => b.Publisher,
+            b => b.Users);
 
         return books.Select(_mapper.Map<BookDto>).ToList();
-
-        
     }
 
     public async Task<BookDto> GetSingleBook(Guid id)
     {
-        return  _mapper.Map<BookDto>(
+        return _mapper.Map<BookDto>(
             await _unitOfWork.Books.GetSingleByConditionAsync(
                 b => b.Id == id,
                 b => b.Author,
-                b => b.Publisher));
+                b => b.Publisher,
+                b => b.Users));
     }
-    
+
     public async Task<List<BookDto>> GetByConditionals(GetByGenreDto getByGenreDto)
     {
         var books = await _unitOfWork.Books.GetByConditionsAsync(
             b => b.Genre == getByGenreDto.Genre,
-                b => b.Author,
-                b => b.Publisher);
+            b => b.Author,
+            b => b.Publisher,
+            b => b.Users);
 
         return books.Select(_mapper.Map<BookDto>).ToList();
     }
@@ -55,7 +56,7 @@ public class BookService(IUnitOfWork _unitOfWork, IMapper _mapper) : IBookServic
                 await _unitOfWork.Authors.GetSingleByConditionAsync(
                     a => a.Id == book.AuthorId));
         }
-        
+
         await _unitOfWork.Books.InsertAsync(_mapper.Map<Book>(book));
         await _unitOfWork.SaveAsync();
     }
@@ -74,7 +75,7 @@ public class BookService(IUnitOfWork _unitOfWork, IMapper _mapper) : IBookServic
         book.YearOfEdition = updateBookDto.YearOfEdition;
         book.PageAmount = updateBookDto.PageAmount;
         book.Image = updateBookDto.Image;
-        
+
         _unitOfWork.Books.Update(_mapper.Map<Book>(book));
         await _unitOfWork.SaveAsync();
     }

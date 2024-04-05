@@ -7,5 +7,5 @@ namespace Eencyclopedia.Infrastructure.Repositories;
 public class UserRepository(EencyclopediaDbContext context)
     : BaseRepository<User>(context), IUserRepository
 {
-    
+
 }

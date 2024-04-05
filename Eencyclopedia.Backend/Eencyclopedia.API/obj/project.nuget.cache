@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ia7ChMNDMySQ62sIBw2vNlSeHU1E3eUnfSUrLFkvH5RtWcnr233IRlLJAKHkBFBaQKOdpffGryayfaaWKhPLxA==",
+  "dgSpecHash": "zMhzKTm0OXMEr87YtgdfmCzykzb2wxPHskkcAWA361WWB/hgqglaxqAdSt+8/keM702KTkmzrC6P1n8RjWnPVQ==",
   "success": true,
   "projectFilePath": "/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/Eencyclopedia.API.csproj",
   "expectedPackageFiles": [
@@ -49,6 +49,8 @@
     "/home/maksi/.nuget/packages/microsoft.identitymodel.tokens/7.1.2/microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "/home/maksi/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/home/maksi/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/home/maksi/.nuget/packages/npgsql/8.0.2/npgsql.8.0.2.nupkg.sha512",
+    "/home/maksi/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.2/npgsql.entityframeworkcore.postgresql.8.0.2.nupkg.sha512",
     "/home/maksi/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.6/sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "/home/maksi/.nuget/packages/sqlitepclraw.core/2.1.6/sqlitepclraw.core.2.1.6.nupkg.sha512",
     "/home/maksi/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.6/sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",

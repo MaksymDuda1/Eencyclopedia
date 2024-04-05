@@ -39,19 +39,48 @@ public class EencyclopediaDbContext : IdentityDbContext<User, Role, Guid>
             .HasOne(b => b.Author)
             .WithMany(a => a.Books)
             .HasForeignKey(b => b.AuthorId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(u => u.Id);
+            entity.HasMany(u => u.FavoriteBooks)
+                .WithMany(b => b.Users)
+                .UsingEntity<BookUser>(
+                    j => j.HasOne(bu => bu.Book)
+                        .WithMany(b => b.BooksUsers),
+                    j => j.HasOne(bu => bu.User)
+                        .WithMany(u => u.BooksUsers),
+                    j =>
+                    {
+                        j.HasKey(bu => new { bu.BookId, bu.UserId });
+                        j.ToTable("BookUser");
+                    });
+        });
+            
+        modelBuilder.Entity<Book>(entity =>
+        {
+            entity.HasKey(b => b.Id);
+            entity.HasOne(b => b.Publisher).WithMany().HasForeignKey(b => b.PublisherId);
+            entity.HasOne(b => b.Author).WithMany().HasForeignKey(b => b.AuthorId);
+        });
         
- 
+
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.FavoriteBooks)
+            .WithMany(b => b.Users);
+        
         modelBuilder.Entity<Author>()
             .HasMany(a => a.Books)
             .WithOne(b => b.Author)
             .HasForeignKey(b => b.AuthorId)
-            .OnDelete(DeleteBehavior.Restrict); 
+            .OnDelete(DeleteBehavior.Cascade); 
         
         modelBuilder.Entity<Publisher>()
             .HasMany(p => p.PublishedBooks)
             .WithOne(b => b.Publisher)
             .HasForeignKey(b => b.PublisherId)
-            .OnDelete(DeleteBehavior.Restrict); 
+            .OnDelete(DeleteBehavior.Cascade);
+        
     }
 }

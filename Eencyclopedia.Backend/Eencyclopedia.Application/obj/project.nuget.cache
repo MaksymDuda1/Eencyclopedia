@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3k0RJPoXPlxhkxuE126EpNR3Sk+4SYU2rzP3aK5t7irmIIeA7lwpJPt5CFqOgg5Q7e6p4gqg0qCJrIcSRSLLlw==",
+  "dgSpecHash": "OJifDdcNRRcvinq6b8sMYBbSJZfJbBDbVO3AdCED1AI/KrV5XR02ASJNRZ+vTX8MzVaOscBdXC7uRu53x57Dog==",
   "success": true,
   "projectFilePath": "/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Application/Eencyclopedia.Application.csproj",
   "expectedPackageFiles": [
@@ -30,6 +30,8 @@
     "/home/maksi/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "/home/maksi/.nuget/packages/microsoft.extensions.options/8.0.2/microsoft.extensions.options.8.0.2.nupkg.sha512",
     "/home/maksi/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/home/maksi/.nuget/packages/npgsql/8.0.2/npgsql.8.0.2.nupkg.sha512",
+    "/home/maksi/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.2/npgsql.entityframeworkcore.postgresql.8.0.2.nupkg.sha512",
     "/home/maksi/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.6/sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "/home/maksi/.nuget/packages/sqlitepclraw.core/2.1.6/sqlitepclraw.core.2.1.6.nupkg.sha512",
     "/home/maksi/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.6/sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",

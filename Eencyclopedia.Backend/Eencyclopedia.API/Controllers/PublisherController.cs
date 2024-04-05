@@ -14,7 +14,7 @@ public class PublisherController : ControllerBase
     {
         _publisherService = publisherService;
     }
-
+    
     [HttpGet]
     public async Task<ActionResult<List<PublisherDto>>> GetAllPublishers()
     {

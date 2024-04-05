@@ -12,25 +12,25 @@ public class BaseRepository<T>(EencyclopediaDbContext _context)
     public async Task<List<T>> GetAllAsync(
         params Expression<Func<T, object>>[] includes)
     {
-        var query =  _context.Set<T>().AsQueryable();
+        var query =  _context.Set<T>().AsNoTracking();
 
         return await includes
             .Aggregate(query, (current, next) => current.Include(next))
             .ToListAsync();
     }
 
-    public async Task<List<T>> GetByConditionsAsync(
-        Expression<Func<T, bool>> expression,
-        params Expression<Func<T, object>>[] includes)
-    {
-        var query = _context.Set<T>()
-            .Where(expression)
-            .AsNoTracking();
+        public async Task<List<T>> GetByConditionsAsync(
+            Expression<Func<T, bool>> expression,
+            params Expression<Func<T, object>>[] includes)
+        {
+            var query = _context.Set<T>()
+                .Where(expression)
+                .AsNoTracking();
 
-        return await includes
-            .Aggregate(query, (current, next) => current.Include(next))
-            .ToListAsync();
-    }
+            return await includes
+                .Aggregate(query, (current, next) => current.Include(next))
+                .ToListAsync();
+        }
 
     public async Task<T?> GetSingleByConditionAsync(
         Expression<Func<T, bool>> expression,
