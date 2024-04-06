@@ -10,4 +10,6 @@ public interface IBookService
     Task CreateBook(CreateBookDto book);
     Task UpdateBook(UpdateBookDto updateBookDto);
     Task DeleteBook(Guid id);
+    Task AddBookImage(AddBookImageDto addBookImageDto);
+
 }

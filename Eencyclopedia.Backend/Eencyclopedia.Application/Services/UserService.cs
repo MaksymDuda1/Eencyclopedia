@@ -12,11 +12,21 @@ namespace Eencyclopedia.Application.Services;
 
 public class UserService(
     IUnitOfWork _unitOfWork,
-    IMapper _mapper) : IUserService
+    IMapper _mapper, UserManager<User> _userManager) : IUserService
 {
     public async Task<List<UserDto>> GetAll()
     {
         var users = await _unitOfWork.Users.GetAllAsync(u => u.FavoriteBooks);
+
+        foreach (var user in users)
+        {
+            var role =  await _userManager.GetRolesAsync(user);
+
+            foreach (var r in role)
+            {
+                Console.WriteLine(r);
+            }
+        }
 
         return users.Select(_mapper.Map<UserDto>).ToList();
     }

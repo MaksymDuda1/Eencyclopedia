@@ -3,6 +3,7 @@ using System;
 using Eencyclopedia.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Eencyclopedia.Infrastructure.Migrations
 {
     [DbContext(typeof(EencyclopediaDbContext))]
-    partial class EencyclopediaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240405170141_AddedImageToUser")]
+    partial class AddedImageToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

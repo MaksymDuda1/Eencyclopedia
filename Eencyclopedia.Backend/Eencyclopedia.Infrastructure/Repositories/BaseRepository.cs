@@ -59,7 +59,7 @@ public class BaseRepository<T>(EencyclopediaDbContext _context)
     {
          _context.Set<T>().Update(entity);
     }
-
+    
     public async Task Delete(Guid id)
     {
         var t = await _context.Set<T>().FindAsync(id);

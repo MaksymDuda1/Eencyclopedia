@@ -6,7 +6,7 @@ using Eencyclopedia.Domain.Entities;
 
 namespace Eencyclopedia.Application.Services;
 
-public class BookService(IUnitOfWork _unitOfWork, IMapper _mapper) : IBookService
+public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMapper _mapper) : IBookService
 {
     public async Task<List<BookDto>> GetAllBooks()
     {
@@ -83,6 +83,15 @@ public class BookService(IUnitOfWork _unitOfWork, IMapper _mapper) : IBookServic
     public async Task DeleteBook(Guid id)
     {
         await _unitOfWork.Books.Delete(id);
+        await _unitOfWork.SaveAsync();
+    }
+
+    public async Task AddBookImage(AddBookImageDto addBookImageDto)
+    {
+        var book = _mapper.Map<BookDto>(await _unitOfWork.Books
+            .GetByConditionsAsync(b => b.Id == addBookImageDto.Id));
+
+        book.Image = _fileService.UploadImage(addBookImageDto.Image).ToString();
         await _unitOfWork.SaveAsync();
     }
 }

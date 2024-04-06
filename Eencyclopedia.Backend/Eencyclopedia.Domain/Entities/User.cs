@@ -10,6 +10,9 @@ public class User: IdentityUser<Guid>
     public string FullName { get; set; } = null!;
     [JsonIgnore]
     public List<Book>? FavoriteBooks { get; set; }
-
+    
+    [MaxLength(200)]
+    public string? Image { get; set; }   
+    
     public List<BookUser>? BooksUsers { get; set; } = new List<BookUser>();
 }

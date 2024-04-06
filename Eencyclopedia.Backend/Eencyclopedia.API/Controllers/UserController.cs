@@ -37,7 +37,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpPut("addToFavorites")]
+    [HttpPost("addToFavorites")]
     public async Task<IActionResult> AddBookToFavorite([FromBody] AddBookToFavoritesDto request)
     {
         try

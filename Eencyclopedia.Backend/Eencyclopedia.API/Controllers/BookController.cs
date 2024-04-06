@@ -1,5 +1,6 @@
 using Eencyclopedia.Application.Abstractions;
 using Eencyclopedia.Domain.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eencyclopedia.API.Controllers;
@@ -77,6 +78,21 @@ public class BookController : ControllerBase
         {
             await _bookService.DeleteBook(id);
             
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpPut("image")]
+    public async Task<IActionResult> AddBookImage([FromForm(Name = "Image")] AddBookImageDto addBookImageDto)
+    {
+        try
+        {
+            await _bookService.AddBookImage(addBookImageDto);
+
             return Ok();
         }
         catch (Exception e)

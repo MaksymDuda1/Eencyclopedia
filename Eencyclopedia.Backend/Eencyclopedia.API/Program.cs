@@ -34,6 +34,8 @@ builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
 builder.Services.AddScoped<IBooksUsersRepository, BooksUsersRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 
@@ -76,9 +78,7 @@ builder.Services.AddDbContext<EencyclopediaDbContext>(
     options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(EencyclopediaDbContext))));
 
-
 var app = builder.Build();
-
 
 if (app.Environment.IsDevelopment())
 {
