@@ -30,8 +30,7 @@ public class BookDto
     
     public PublisherDto? Publisher { get; set; }
 
-    public Guid? AuthorId { get; set; }
-    public AuthorDto? Author { get; set; }
+    public List<AuthorDto> Authors { get; set; } = null!;
 
     [JsonIgnore] public List<UserDto>? Users { get; set; } 
 }

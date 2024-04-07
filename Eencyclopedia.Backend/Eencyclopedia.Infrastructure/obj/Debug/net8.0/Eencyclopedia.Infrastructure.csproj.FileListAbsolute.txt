@@ -9,10 +9,10 @@
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.AssemblyInfoInputs.cache
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.AssemblyInfo.cs
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.csproj.CoreCompileInputs.cache
-/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclo.FD81079D.Up2Date
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/refint/Eencyclopedia.Infrastructure.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.pdb
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.genruntimeconfig.cache
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/ref/Eencyclopedia.Infrastructure.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.sourcelink.json
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.Infrastructure/obj/Debug/net8.0/Eencyclopedia.Infrastructure.csproj.CopyComplete

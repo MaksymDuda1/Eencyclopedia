@@ -28,10 +28,10 @@ public class Book
     public Guid? PublisherId { get; set; }
     
     public Publisher? Publisher { get; set; }
+    
+    public List<Author> Authors { get; set; } = new List<Author>();
 
-    public Guid? AuthorId { get; set; }
-
-    public Author? Author { get; set; } = null!;
+    public List<AuthorBook>? AuthorsBooks { get; set; } = new List<AuthorBook>();
     
     [JsonIgnore]
     public List<User>? Users { get; set; } = new List<User>();

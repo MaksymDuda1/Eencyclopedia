@@ -3,6 +3,7 @@ using System;
 using Eencyclopedia.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Eencyclopedia.Infrastructure.Migrations
 {
     [DbContext(typeof(EencyclopediaDbContext))]
-    partial class EencyclopediaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240407165058_QWE")]
+    partial class QWE
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,25 +53,13 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("Eencyclopedia.Domain.Entities.AuthorBook", b =>
-                {
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("BookId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("AuthorId", "BookId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("AuthorBook", (string)null);
-                });
-
             modelBuilder.Entity("Eencyclopedia.Domain.Entities.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("AuthorId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
@@ -102,6 +93,8 @@ namespace Eencyclopedia.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("PublisherId");
 
@@ -177,13 +170,13 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c1638020-7c4d-4b84-9b6f-4f4846c01f5b"),
+                            Id = new Guid("2e5ef116-734c-42e8-998d-da1827e6174a"),
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("97507868-724d-4484-abe8-c9e44628061d"),
+                            Id = new Guid("d61f153b-520e-4a2f-bf10-f6ed23c9c7f5"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -366,31 +359,19 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Eencyclopedia.Domain.Entities.AuthorBook", b =>
-                {
-                    b.HasOne("Eencyclopedia.Domain.Entities.Author", "Author")
-                        .WithMany("AuthorsBooks")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Eencyclopedia.Domain.Entities.Book", "Book")
-                        .WithMany("AuthorsBooks")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Book");
-                });
-
             modelBuilder.Entity("Eencyclopedia.Domain.Entities.Book", b =>
                 {
+                    b.HasOne("Eencyclopedia.Domain.Entities.Author", "Author")
+                        .WithMany("Books")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Eencyclopedia.Domain.Entities.Publisher", "Publisher")
                         .WithMany("PublishedBooks")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Author");
 
                     b.Navigation("Publisher");
                 });
@@ -467,13 +448,11 @@ namespace Eencyclopedia.Infrastructure.Migrations
 
             modelBuilder.Entity("Eencyclopedia.Domain.Entities.Author", b =>
                 {
-                    b.Navigation("AuthorsBooks");
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Eencyclopedia.Domain.Entities.Book", b =>
                 {
-                    b.Navigation("AuthorsBooks");
-
                     b.Navigation("BooksUsers");
                 });
 

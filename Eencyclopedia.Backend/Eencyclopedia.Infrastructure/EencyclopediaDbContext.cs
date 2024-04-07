@@ -34,12 +34,24 @@ public class EencyclopediaDbContext : IdentityDbContext<User, Role, Guid>
                     Name = "Admin",
                     NormalizedName = "ADMIN"
                 });
-        
-        modelBuilder.Entity<Book>()
-            .HasOne(b => b.Author)
-            .WithMany(a => a.Books)
-            .HasForeignKey(b => b.AuthorId)
-            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Book>(entity =>
+        {
+            entity.HasKey(b => b.Id);
+            entity.HasMany(a => a.Authors)
+                .WithMany(b => b.Books)
+                .UsingEntity<AuthorBook>(
+                    j => j.HasOne(ab => ab.Author)
+                        .WithMany(a => a.AuthorsBooks),
+                    j => j.HasOne(ab => ab.Book)
+                        .WithMany(b => b.AuthorsBooks),
+                    j =>
+                    {
+                        j.HasKey(ab => new { ab.AuthorId, ab.BookId });
+                        j.ToTable("AuthorBook");
+                    }
+                );
+        });
 
         modelBuilder.Entity<User>(entity =>
         {
@@ -57,24 +69,10 @@ public class EencyclopediaDbContext : IdentityDbContext<User, Role, Guid>
                         j.ToTable("BookUser");
                     });
         });
-            
-        modelBuilder.Entity<Book>(entity =>
-        {
-            entity.HasKey(b => b.Id);
-            entity.HasOne(b => b.Publisher).WithMany().HasForeignKey(b => b.PublisherId);
-            entity.HasOne(b => b.Author).WithMany().HasForeignKey(b => b.AuthorId);
-        });
-        
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.FavoriteBooks)
             .WithMany(b => b.Users);
-        
-        modelBuilder.Entity<Author>()
-            .HasMany(a => a.Books)
-            .WithOne(b => b.Author)
-            .HasForeignKey(b => b.AuthorId)
-            .OnDelete(DeleteBehavior.Cascade); 
         
         modelBuilder.Entity<Publisher>()
             .HasMany(p => p.PublishedBooks)

@@ -11,7 +11,7 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
     public async Task<List<BookDto>> GetAllBooks()
     {
         var books = await _unitOfWork.Books.GetAllAsync(
-            b => b.Author,
+            b => b.Authors,
             b => b.Publisher,
             b => b.Users);
 
@@ -23,7 +23,7 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
         return _mapper.Map<BookDto>(
             await _unitOfWork.Books.GetSingleByConditionAsync(
                 b => b.Id == id,
-                b => b.Author,
+                b => b.Authors,
                 b => b.Publisher,
                 b => b.Users));
     }
@@ -32,7 +32,7 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
     {
         var books = await _unitOfWork.Books.GetByConditionsAsync(
             b => b.Genre == getByGenreDto.Genre,
-            b => b.Author,
+            b => b.Authors,
             b => b.Publisher,
             b => b.Users);
 
@@ -50,11 +50,9 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
                     p => p.Id == book.PublisherId));
         }
 
-        if (book.AuthorId != null)
+        if (book.Authors != null)
         {
-            book.Author = _mapper.Map<AuthorDto>(
-                await _unitOfWork.Authors.GetSingleByConditionAsync(
-                    a => a.Id == book.AuthorId));
+            book.Authors.AddRange(createBookDto.Authors.Select(_mapper.Map<AuthorDto>));
         }
 
         await _unitOfWork.Books.InsertAsync(_mapper.Map<Book>(book));
@@ -65,7 +63,7 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
     {
         var book = _mapper.Map<BookDto>(await _unitOfWork.Books.GetSingleByConditionAsync(
             b => b.Id == updateBookDto.Id,
-            b => b.Author,
+            b => b.Authors,
             b => b.Publisher));
 
         book.Name = updateBookDto.Name;

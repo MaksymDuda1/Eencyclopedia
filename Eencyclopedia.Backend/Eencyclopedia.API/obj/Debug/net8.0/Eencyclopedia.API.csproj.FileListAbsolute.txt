@@ -143,7 +143,6 @@
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Eencyclopedia.API.props
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/staticwebassets.pack.json
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/scopedcss/bundle/Eencyclopedia.API.styles.css
-/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/Eencyclo.BEEDF004.Up2Date
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/Eencyclopedia.API.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/refint/Eencyclopedia.API.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/Eencyclopedia.API.pdb
@@ -155,3 +154,4 @@
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/JWT.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/Newtonsoft.Json.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/Eencyclopedia.API.csproj.CopyComplete

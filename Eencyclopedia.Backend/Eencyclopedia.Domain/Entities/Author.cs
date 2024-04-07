@@ -17,4 +17,6 @@ public class Author
     [MaxLength(200)]
     public string? Image { get; set; }
     public List<Book>? Books { get; set; } = new List<Book>();
+    
+    public List<AuthorBook>? AuthorsBooks { get; set; } = new List<AuthorBook>();
 }

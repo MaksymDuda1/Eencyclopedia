@@ -1,3 +1,4 @@
+using Eencyclopedia.Domain.Entities;
 using Eencyclopedia.Domain.Enums;
 
 namespace Eencyclopedia.Domain.DTOs;
@@ -21,5 +22,5 @@ public class CreateBookDto
     
     public Guid? PublisherId { get; set; }
 
-    public Guid? AuthorId { get; set; }
+    public List<Author> Authors { get; set; } = null!;
 }
