@@ -9,7 +9,8 @@ public class UnitOfWork(
     Lazy<IAuthorRepository> authorRepository,
     Lazy<IPublisherRepository> publisherRepository,
     Lazy<IUserRepository> userRepository,
-    Lazy<IBooksUsersRepository> booksUsersRepository ) : IUnitOfWork
+    Lazy<IBooksUsersRepository> booksUsersRepository,
+    Lazy<IAuthorsBooksRepository> authorsBooksRepository) : IUnitOfWork
 {
     
     public IBookRepository Books => bookRepository.Value;
@@ -17,5 +18,6 @@ public class UnitOfWork(
     public IPublisherRepository Publishers => publisherRepository.Value;
     public IUserRepository Users => userRepository.Value;
     public IBooksUsersRepository BooksUsers => booksUsersRepository.Value;
+    public IAuthorsBooksRepository AuthorsBooks => authorsBooksRepository.Value;
     public async Task SaveAsync() => await  context.SaveChangesAsync();
 }

@@ -7,5 +7,6 @@ public interface IUnitOfWork
     IPublisherRepository Publishers { get; }
     IUserRepository Users { get; }
     IBooksUsersRepository BooksUsers { get; }
+    IAuthorsBooksRepository AuthorsBooks { get; }
     Task SaveAsync();
 }

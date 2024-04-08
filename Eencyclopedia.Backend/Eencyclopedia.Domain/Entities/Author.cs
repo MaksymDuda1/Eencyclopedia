@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Eencyclopedia.Domain.Entities;
 
@@ -16,6 +17,8 @@ public class Author
 
     [MaxLength(200)]
     public string? Image { get; set; }
+    
+    [JsonIgnore]
     public List<Book>? Books { get; set; } = new List<Book>();
     
     public List<AuthorBook>? AuthorsBooks { get; set; } = new List<AuthorBook>();

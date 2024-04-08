@@ -38,6 +38,8 @@ builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
+builder.Services.AddScoped<IAuthorsBooksRepository, AuthorsBooksRepository>();
+builder.Services.AddScoped<ISearchEngineService, SearchEngineService>();
 
 builder.Services.AddScoped(typeof(Lazy<>), typeof(LazyInstance<>));
 

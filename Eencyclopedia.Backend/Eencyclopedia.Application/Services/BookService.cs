@@ -41,21 +41,32 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
 
     public async Task CreateBook(CreateBookDto createBookDto)
     {
-        var book = _mapper.Map<BookDto>(createBookDto);
-
-        if (book.PublisherId != null)
+        var book = new Book
         {
-            book.Publisher = _mapper.Map<PublisherDto>(
-                await _unitOfWork.Publishers.GetSingleByConditionAsync(
-                    p => p.Id == book.PublisherId));
+            Id = Guid.NewGuid(),
+            Name = createBookDto.Name,
+            Path = createBookDto.Path,
+            Description = createBookDto.Description,
+            Genre = createBookDto.Genre,
+            YearOfEdition = createBookDto.YearOfEdition,
+            PageAmount = createBookDto.PageAmount,
+            Image = createBookDto.Image
+        };
+
+        book.Publisher = await _unitOfWork.Publishers
+            .GetSingleByConditionAsync(p => p.Id == createBookDto.PublisherId);
+
+        await _unitOfWork.Books.InsertAsync(book);
+
+        foreach (var authorId in createBookDto.Authors)
+        {
+            await _unitOfWork.AuthorsBooks.InsertAsync(new AuthorBook
+            {
+                BookId = book.Id,
+                AuthorId = authorId
+            });
         }
 
-        if (book.Authors != null)
-        {
-            book.Authors.AddRange(createBookDto.Authors.Select(_mapper.Map<AuthorDto>));
-        }
-
-        await _unitOfWork.Books.InsertAsync(_mapper.Map<Book>(book));
         await _unitOfWork.SaveAsync();
     }
 

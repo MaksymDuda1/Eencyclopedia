@@ -16,11 +16,10 @@ public class CreateBookDto
     public int YearOfEdition { get; set; }
     
     public int PageAmount { get; set; }
-    
    
     public string? Image { get; set; }
     
     public Guid? PublisherId { get; set; }
 
-    public List<Author> Authors { get; set; } = null!;
+    public List<Guid> Authors { get; set; } = null!;
 }

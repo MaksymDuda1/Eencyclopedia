@@ -29,6 +29,7 @@ public class Book
     
     public Publisher? Publisher { get; set; }
     
+    [JsonIgnore]
     public List<Author> Authors { get; set; } = new List<Author>();
 
     public List<AuthorBook>? AuthorsBooks { get; set; } = new List<AuthorBook>();
