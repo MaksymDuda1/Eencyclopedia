@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../services/bookService';
 import { BookModel } from '../../../models/bookModel';
-import { concatWith } from 'rxjs';
-import { BookUpdateComponent } from './book-update/book-update.component';
+
 import { genreValueToString } from '../../../enums/genre';
 
 @Component({
@@ -21,6 +20,7 @@ export class AdminBooksComponent implements OnInit {
     return genreValueToString(genre);
   }
 
+ 
   ngOnInit(): void {
     this.bookService.getAll().subscribe(data => {
       this.books = data;

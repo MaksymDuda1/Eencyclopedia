@@ -33,12 +33,12 @@ public class BookController : ControllerBase
         return Ok(book);
     }
 
-    [HttpGet("genre")]
-    public async Task<ActionResult<List<BookDto>>> GetBookByGenre([FromQuery] Genre request)
+    [HttpGet("genre/{genre:int}")]
+    public async Task<ActionResult<List<BookDto>>> GetBookByGenre(int genre)
     {
         try
         {
-            var books = await _bookService.GetByConditionals(request);
+            var books = await _bookService.GetByConditionals(genre);
 
             return books;
         }

@@ -5,3 +5,4 @@ public enum Genre
     Genre1,
     Genre2
 }
+

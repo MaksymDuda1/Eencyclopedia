@@ -27,7 +27,7 @@
                     <td>{{book.pageAmount}}</td>
                     <td *ngFor="let author of book.authors">{{author.fullName}}</td>
                     <td>{{ book.publisher ? book.publisher.name : 'book without publisher' }}</td>
-                    <td><button class="btn btn-warning" [routerLink]="'update-book/' + book.id" (click)="update(book)">Edit</button></td>
+                    <td><button class="btn btn-warning" [routerLink]="'update-book/' + book.id">Edit</button></td>
                     <td><button class="btn btn-danger" >delete</button></td>
                 </tr>
             </tbody>

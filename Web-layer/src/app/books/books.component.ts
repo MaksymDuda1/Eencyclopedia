@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/bookService';
 import { BookModel } from '../../models/bookModel';
-import { genreValueToString } from '../../enums/genre';
+import { Genre, genreValueToString } from '../../enums/genre';
 import { SearchService } from '../../services/searchService';
 import { empty } from 'rxjs';
 
@@ -27,18 +27,28 @@ export class BooksComponent implements OnInit {
     return genreValueToString(genre);
   }
 
-  searchBooks() {
-    this.searchService.searchBooks(this.searchText).subscribe(data => {
-      if (data == empty) {
-        this.bookService.getAll().subscribe(data => {
-          this.books = data
-        });
-      }
+  getByGenre(genre: number){
+    console.log(genre);
+    this.bookService.getByGenre(genre).subscribe(data => {
       this.books = data;
-    },
-      errorResponse => {
-        this.errorMessage = errorResponse;
-      })
+    })
+  }
+
+  searchBooks() {
+    if (this.searchText.trim() === '') {
+      this.bookService.getAll().subscribe(data => {
+        this.books = data;
+      });
+    } else {
+      this.searchService.searchBooks(this.searchText).subscribe(
+        data => {
+          this.books = data;
+        },
+        errorResponse => {
+          this.errorMessage = errorResponse;
+        }
+      );
+    }
   }
 
   ngOnInit(): void {

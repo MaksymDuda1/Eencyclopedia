@@ -30,10 +30,10 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
                 b => b.Users));
     }
 
-    public async Task<List<BookDto>> GetByConditionals(Genre genre)
+    public async Task<List<BookDto>> GetByConditionals(int genre)
     {
         var books = await _unitOfWork.Books.GetByConditionsAsync(
-            b => b.Genre == genre,
+            b => b.Genre == (Genre)genre,
             b => b.Authors,
             b => b.Publisher,
             b => b.Users);

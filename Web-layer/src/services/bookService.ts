@@ -18,14 +18,8 @@ export class BookService{
         return this.client.get<BookModel>('api/books/' + id);
     }
 
-    getByGenre(genre: Genre): Observable<any> {
-        let params = new HttpParams();
-        Object.keys(genre).forEach(key => {
-            if (genre !== null && genre !== undefined) {
-                params = params.append("Genre", genre);
-            }
-        });
-        return this.client.get<any>('api/search', { params });
+    getByGenre(genre: number): Observable<any> {
+        return this.client.get<any>('api/books/genre/'+ genre);
     }
 
     createBook(createBookModel: FormData) : Observable<any>{

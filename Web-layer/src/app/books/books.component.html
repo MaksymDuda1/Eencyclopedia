@@ -1,10 +1,12 @@
+<button (click)="getByGenre(0)">Genre1</button>
+<button (click)="getByGenre(1)">Genre2</button>
 <div class="search-container">
     <div class="row p-0 m-0">
-        <div class="col-6 col-md-8"></div> 
+        <div class="col-6 col-md-8"></div>
         <div class="col-6 col-md-4">
             <div class="search-container">
                 <span>Search by name:</span>
-                <input type="text" [(ngModel)]="searchText" (input)="searchBooks()">
+                <input type="text" [(ngModel)]="searchText" (input)="searchBooks()" (ngModelChange)="searchBooks()">
             </div>
         </div>
     </div>
@@ -35,7 +37,7 @@
             <span>Page amount:</span>
             {{book.pageAmount}}
         </div>
-        
+
         <div class="authors">
             <span>authors: </span>
             <span *ngFor="let author of book.authors">{{author.fullName}}</span>
