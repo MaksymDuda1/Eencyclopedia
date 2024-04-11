@@ -40,21 +40,21 @@ public class AuthorController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorDto request)
+    public async Task<ActionResult<CreateAuthorDto>> CreateAuthor([FromBody] CreateAuthorDto request)
     {
-        await _authorService.CreateAuthor(request);
+        var author = await _authorService.CreateAuthor(request);
 
-        return Ok();
+        return Ok(author);
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateAuthor([FromBody] UpdateAuthorDto request)
+    public async Task<ActionResult<CreateAuthorDto>>  UpdateAuthor([FromBody] UpdateAuthorDto request)
     {
         try
         {
-            await _authorService.UpdateAuthor(request);
+            var author = await _authorService.UpdateAuthor(request);
 
-            return Ok();
+            return Ok(author);
         }
         catch (Exception e)
         {

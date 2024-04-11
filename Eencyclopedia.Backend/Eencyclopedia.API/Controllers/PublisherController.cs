@@ -46,13 +46,13 @@ public class PublisherController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreatePublisher([FromBody] CreatePublisherDto request)
+    public async Task<ActionResult<PublisherDto>> CreatePublisher([FromBody] CreatePublisherDto request)
     {
         try
         {
-            await _publisherService.CreatePublisher(request);
+            var publisher = await _publisherService.CreatePublisher(request);
 
-            return Ok();
+            return Ok(publisher);
         }
         catch (Exception e)
         {
@@ -61,13 +61,13 @@ public class PublisherController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdatePublisher([FromBody] UpdatePublisherDto updatePublisherDto)
+    public async Task<ActionResult<PublisherDto>> UpdatePublisher([FromBody] UpdatePublisherDto updatePublisherDto)
     {
         try
         {
-            await _publisherService.UpdatePublisher(updatePublisherDto);
+            var publisher = await _publisherService.UpdatePublisher(updatePublisherDto);
 
-            return Ok();
+            return Ok(publisher);
         }
         catch (Exception e)
         {

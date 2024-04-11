@@ -78,7 +78,10 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddDbContext<EencyclopediaDbContext>(
     options =>
-        options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(EencyclopediaDbContext))));
+    {
+        options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(EencyclopediaDbContext)));
+        });
+
 
 var app = builder.Build();
 

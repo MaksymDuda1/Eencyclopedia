@@ -1,5 +1,6 @@
 using Eencyclopedia.Application.Abstractions;
 using Eencyclopedia.Domain.DTOs;
+using Eencyclopedia.Domain.Enums;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,7 +34,7 @@ public class BookController : ControllerBase
     }
 
     [HttpGet("genre")]
-    public async Task<ActionResult<List<BookDto>>> GetBookByGenre([FromBody] GetByGenreDto request)
+    public async Task<ActionResult<List<BookDto>>> GetBookByGenre([FromQuery] Genre request)
     {
         try
         {
@@ -48,21 +49,21 @@ public class BookController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateBook([FromBody] CreateBookDto request)
+    public async Task<ActionResult<BookDto>> CreateBook([FromBody] CreateBookDto request)
     {
-        await _bookService.CreateBook(request);
+        var book = await _bookService.CreateBook(request);
 
-        return Ok();
+        return Ok(book);
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateBook([FromBody] UpdateBookDto request)
+    public async Task<ActionResult<BookDto>> UpdateBook([FromForm] UpdateBookDto request)
     {
         try
         {
-            await _bookService.UpdateBook(request);
+            var book = await _bookService.UpdateBook(request);
 
-            return Ok();
+            return Ok(book);
         }
         catch(Exception e)
         {
@@ -86,7 +87,7 @@ public class BookController : ControllerBase
         }
     }
 
-    [HttpPut("image")]
+    /*[HttpPut("image")]
     public async Task<IActionResult> AddBookImage([FromForm(Name = "Image")] AddBookImageDto addBookImageDto)
     {
         try
@@ -99,5 +100,5 @@ public class BookController : ControllerBase
         {
             return BadRequest(e.Message);
         }
-    }
+    }*/
 }
