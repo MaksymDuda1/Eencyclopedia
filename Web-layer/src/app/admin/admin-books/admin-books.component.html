@@ -1,0 +1,38 @@
+<div class="books">
+    <span>Books:</span>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Img</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">YearOfEdition</th>
+                    <th scope="col">PageAmount</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col"><button class="btn btn-dark">Add</button></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let book of books">
+                    <td><img src="" alt=""></td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.description}}</td>
+                    <td>{{getName(book.genre)}}</td>
+                    <td>{{book.yearOfEdition}}</td>
+                    <td>{{book.pageAmount}}</td>
+                    <td *ngFor="let author of book.authors">{{author.fullName}}</td>
+                    <td>{{ book.publisher ? book.publisher.name : 'book without publisher' }}</td>
+                    <td><button class="btn btn-warning" [routerLink]="'update-book/' + book.id" (click)="update(book)">Edit</button></td>
+                    <td><button class="btn btn-danger" >delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

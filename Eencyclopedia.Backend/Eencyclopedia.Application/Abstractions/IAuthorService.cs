@@ -8,7 +8,7 @@ public interface IAuthorService
 {
     Task<List<AuthorDto>> GetAllAuthors();
     Task<AuthorDto> GetSingleAuthor(Guid id);
-    Task CreateAuthor(CreateAuthorDto author);
-    Task UpdateAuthor(UpdateAuthorDto author);
+    Task<AuthorDto> CreateAuthor(CreateAuthorDto author);
+    Task<AuthorDto> UpdateAuthor(UpdateAuthorDto author);
     Task Delete(Guid id);
 }

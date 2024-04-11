@@ -25,29 +25,31 @@ public class AuthorService(IUnitOfWork _unitOfWork, IMapper _mapper) : IAuthorSe
                 a => a.Books));
     }
 
-    public async Task CreateAuthor(CreateAuthorDto author)
+    public async Task<AuthorDto> CreateAuthor(CreateAuthorDto author)
     {
-        var newAuthor = _mapper.Map<AuthorDto>(author);
+        var authorDto = _mapper.Map<AuthorDto>(author);
 
-        await _unitOfWork.Authors.InsertAsync(_mapper.Map<Author>(newAuthor));
+        await _unitOfWork.Authors.InsertAsync(_mapper.Map<Author>(authorDto));
         await _unitOfWork.SaveAsync();
+
+        return authorDto;
     }
 
-    public async Task UpdateAuthor(UpdateAuthorDto updateAuthorDto)
+    public async Task<AuthorDto> UpdateAuthor(UpdateAuthorDto updateAuthorDto)
     {
-        var author = _mapper.Map<AuthorDto>(
+        var authorDto = _mapper.Map<AuthorDto>(
             await _unitOfWork.Authors.GetSingleByConditionAsync(
-                a => a.Id == updateAuthorDto.Id,
-                    a => a.Books));
+                    a => a.Id == updateAuthorDto.Id));
 
-        author.FullName = updateAuthorDto.FullName;
-        author.Description = updateAuthorDto.Description;
-        author.BirthDate = updateAuthorDto.BirthDate;
-        author.Image = updateAuthorDto.Image; // add service for image uploading
+        authorDto.FullName = updateAuthorDto.FullName;
+        authorDto.Description = updateAuthorDto.Description;
+        authorDto.BirthDate = updateAuthorDto.BirthDate;
+        authorDto.Image = updateAuthorDto.Image; // add service for image uploading
 
-        _unitOfWork.Authors.Update(_mapper.Map<Author>(author));
+        _unitOfWork.Authors.Update(_mapper.Map<Author>(authorDto));
         await _unitOfWork.SaveAsync();
 
+        return authorDto;
     }
 
     public async Task Delete(Guid id)

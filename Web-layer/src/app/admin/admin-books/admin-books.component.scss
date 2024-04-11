@@ -1,0 +1,30 @@
+.img-holder{
+    height: 32px;
+    width: 32px;
+}
+
+.img-holder img{
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    align-items: center;
+}
+
+
+.table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container{
+    margin-top: 4em;
+}
+
+.table th, .table td {
+    padding: 8px;
+}
+
+.table tr {
+    border-bottom: 1px solid #dddddd; /* підкреслення рядків */
+}

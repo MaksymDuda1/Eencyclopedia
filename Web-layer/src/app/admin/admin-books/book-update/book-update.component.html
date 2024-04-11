@@ -1,0 +1,58 @@
+<div class="container-md ">
+    <div class="header">
+        <span>Update page</span>
+    </div>
+    <form>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Name:</label>
+            <input type="text" name="name" class="form-control area" [(ngModel)]="book.name" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Path:</label>
+            <input type="text" name="path" class="form-control area" [(ngModel)]="book.path" id="path">
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Description:</label>
+            <input type="text" name="description" class="form-control area" [(ngModel)]="book.description"
+                id="description">
+        </div>
+        <div class="mb-3">
+            <select class="form-select form-select-lg mb-3" aria-label="Large select example" [(ngModel)]="selectedGenre"
+                name="genre">
+                <option *ngFor="let genre of genres" [value]="genre">
+                    {{ genre }}
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">YearOfEdition:</label>
+            <input type="text" name="yearOfEdition" class="form-control area" [(ngModel)]="book.yearOfEdition"
+                id="yearOfEdition">
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">PageAmount:</label>
+            <input type="text" name="pageAmount" class="form-control area" [(ngModel)]="book.pageAmount"
+                id="pageAmount">
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Image:</label>
+            <img src="trustPath" alt="">
+            <input type="file" name="image" class="form-control area" (change)="onFileChange($event)" id="image">
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Publisher:</label>
+            <select class="form-select form-select-lg mb-3" aria-label="Large select example" [(ngModel)]="publisherId"
+                name="publisher">
+                <option *ngFor="let publisher of publishers" [value]="publisher.id">
+                    {{ publisher.name }}
+                </option>
+            </select>
+        </div>
+
+
+        <div class="btns">
+            <button type="submit" name="stage7" class="btn btn-dark" (click)="onUpdate()">Submit</button>
+            <button class="btn btn-dark" [routerLink]="['/admin/admin-books']">Back</button>
+        </div>
+    </form>
+</div>

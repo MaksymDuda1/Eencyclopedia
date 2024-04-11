@@ -3,6 +3,8 @@ using Eencyclopedia.Application.Abstractions;
 using Eencyclopedia.Domain.Abstractions;
 using Eencyclopedia.Domain.DTOs;
 using Eencyclopedia.Domain.Entities;
+using Eencyclopedia.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace Eencyclopedia.Application.Services;
 
@@ -28,10 +30,10 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
                 b => b.Users));
     }
 
-    public async Task<List<BookDto>> GetByConditionals(GetByGenreDto getByGenreDto)
+    public async Task<List<BookDto>> GetByConditionals(Genre genre)
     {
         var books = await _unitOfWork.Books.GetByConditionsAsync(
-            b => b.Genre == getByGenreDto.Genre,
+            b => b.Genre == genre,
             b => b.Authors,
             b => b.Publisher,
             b => b.Users);
@@ -39,9 +41,9 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
         return books.Select(_mapper.Map<BookDto>).ToList();
     }
 
-    public async Task CreateBook(CreateBookDto createBookDto)
+    public async Task<BookDto> CreateBook(CreateBookDto createBookDto)
     {
-        var book = new Book
+        var book = new BookDto()
         {
             Id = Guid.NewGuid(),
             Name = createBookDto.Name,
@@ -50,57 +52,68 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
             Genre = createBookDto.Genre,
             YearOfEdition = createBookDto.YearOfEdition,
             PageAmount = createBookDto.PageAmount,
-            Image = createBookDto.Image
         };
 
-        book.Publisher = await _unitOfWork.Publishers
-            .GetSingleByConditionAsync(p => p.Id == createBookDto.PublisherId);
-
-        await _unitOfWork.Books.InsertAsync(book);
-
+        var bookEntity = _mapper.Map<Book>(book);
+        
+        book.Image =  _fileService.UploadImage(createBookDto.Image).ToString();
+        book.Publisher =_mapper.Map<PublisherDto>(await _unitOfWork.Publishers
+            .GetSingleByConditionAsync(p => p.Id == createBookDto.PublisherId));
+        
         foreach (var authorId in createBookDto.Authors)
         {
             await _unitOfWork.AuthorsBooks.InsertAsync(new AuthorBook
             {
-                BookId = book.Id,
+                Book = bookEntity,
                 AuthorId = authorId
+                
             });
         }
 
         await _unitOfWork.SaveAsync();
+
+        return book;
     }
 
-    public async Task UpdateBook(UpdateBookDto updateBookDto)
+    public async Task<BookDto> UpdateBook(UpdateBookDto updateBookDto)
     {
-        var book = _mapper.Map<BookDto>(await _unitOfWork.Books.GetSingleByConditionAsync(
-            b => b.Id == updateBookDto.Id,
-            b => b.Authors,
-            b => b.Publisher));
+        var bookDto = _mapper.Map<BookDto>(await _unitOfWork.Books.GetSingleByConditionAsync(
+            b => b.Id == updateBookDto.Id));
 
-        book.Name = updateBookDto.Name;
-        book.Path = updateBookDto.Path;
-        book.Description = updateBookDto.Description;
-        book.Genre = updateBookDto.Genre;
-        book.YearOfEdition = updateBookDto.YearOfEdition;
-        book.PageAmount = updateBookDto.PageAmount;
-        book.Image = updateBookDto.Image;
+        bookDto.Name = updateBookDto.Name;
+        bookDto.Path = updateBookDto.Path;
+        bookDto.Description = updateBookDto.Description;
+        bookDto.Genre = updateBookDto.Genre;
+        bookDto.YearOfEdition = updateBookDto.YearOfEdition;
+        bookDto.PageAmount = updateBookDto.PageAmount;
+        
+        if(updateBookDto.Image != null)
+            bookDto.Image = await _fileService.UploadImage(updateBookDto.Image);
+        
+        if (updateBookDto.PublisherId != null)
+        {
+            var publisher = _mapper.Map<PublisherDto>(await _unitOfWork.Publishers
+                .GetSingleByConditionAsync(p => p.Id == updateBookDto.PublisherId));
 
-        _unitOfWork.Books.Update(_mapper.Map<Book>(book));
+            if (publisher != null)
+            {
+                bookDto.Publisher = publisher;
+            }
+            else
+            {
+                throw new Exception("Publisher doesn't exist");
+            }
+        }
+
+        _unitOfWork.Books.Update(_mapper.Map<Book>(bookDto));
         await _unitOfWork.SaveAsync();
+
+        return bookDto;
     }
 
     public async Task DeleteBook(Guid id)
     {
         await _unitOfWork.Books.Delete(id);
-        await _unitOfWork.SaveAsync();
-    }
-
-    public async Task AddBookImage(AddBookImageDto addBookImageDto)
-    {
-        var book = _mapper.Map<BookDto>(await _unitOfWork.Books
-            .GetByConditionsAsync(b => b.Id == addBookImageDto.Id));
-
-        book.Image = _fileService.UploadImage(addBookImageDto.Image).ToString();
         await _unitOfWork.SaveAsync();
     }
 }

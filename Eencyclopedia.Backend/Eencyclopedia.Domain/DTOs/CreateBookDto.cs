@@ -1,5 +1,6 @@
 using Eencyclopedia.Domain.Entities;
 using Eencyclopedia.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace Eencyclopedia.Domain.DTOs;
 
@@ -17,7 +18,7 @@ public class CreateBookDto
     
     public int PageAmount { get; set; }
    
-    public string? Image { get; set; }
+    public IFormFile? Image { get; set; }
     
     public Guid? PublisherId { get; set; }
 

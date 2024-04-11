@@ -13,7 +13,7 @@ public class FileService(IUnitOfWork _unitOfWork, IMapper _mapper) : IFileServic
         try
         {
             var folderName = Path.Combine( "Images");
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            var pathToSave = "/Studying/Eencyclopedia/Web-layer/src/assets";
             var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim().Split(new[] { '.' });
             var newFileName = new string(Guid.NewGuid() + "." + fileName.Last());
             var fullPath = Path.Combine(pathToSave, newFileName);
@@ -27,7 +27,7 @@ public class FileService(IUnitOfWork _unitOfWork, IMapper _mapper) : IFileServic
         }
         catch (Exception e)
         {
-            throw new Exception("Error in upload photo");
+            throw new Exception(e.Message);
         }
     }
 }

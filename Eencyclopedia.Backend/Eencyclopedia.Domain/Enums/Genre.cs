@@ -2,6 +2,6 @@ namespace Eencyclopedia.Domain.Enums;
 
 public enum Genre
 {
-    Roman,
-    Comedy
+    Genre1,
+    Genre2
 }

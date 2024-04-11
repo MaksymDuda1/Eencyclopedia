@@ -27,6 +27,7 @@ public class Book
     
     public Guid? PublisherId { get; set; }
     
+    [JsonIgnore]
     public Publisher? Publisher { get; set; }
     
     [JsonIgnore]

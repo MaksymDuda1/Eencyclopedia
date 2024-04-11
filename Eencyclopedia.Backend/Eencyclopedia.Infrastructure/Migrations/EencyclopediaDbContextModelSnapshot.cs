@@ -177,13 +177,13 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c1638020-7c4d-4b84-9b6f-4f4846c01f5b"),
+                            Id = new Guid("ce9f5ee2-e080-4763-b3ee-393bd939992a"),
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("97507868-724d-4484-abe8-c9e44628061d"),
+                            Id = new Guid("ce02397e-796a-4ff3-be59-e614bd426e15"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
