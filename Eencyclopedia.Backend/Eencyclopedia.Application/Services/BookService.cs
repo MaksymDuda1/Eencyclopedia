@@ -53,12 +53,12 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
             YearOfEdition = createBookDto.YearOfEdition,
             PageAmount = createBookDto.PageAmount,
         };
-
-        var bookEntity = _mapper.Map<Book>(book);
         
         book.Image =  _fileService.UploadImage(createBookDto.Image).ToString();
         book.Publisher =_mapper.Map<PublisherDto>(await _unitOfWork.Publishers
             .GetSingleByConditionAsync(p => p.Id == createBookDto.PublisherId));
+        
+        var bookEntity = _mapper.Map<Book>(book);
         
         foreach (var authorId in createBookDto.Authors)
         {

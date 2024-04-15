@@ -1,1 +1,26 @@
-<p>admin-users works!</p>
+<div class="Users">
+    <span>Users:</span>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Number</th>
+                    <th>Full name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col"><button class="btn btn-dark" [routerLink]="'create-user/'">Add</button></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let user of users">
+                        <td>1</td>
+                        <td>{{user.fullName}}</td>
+                        <td><button class="btn btn-dark" (click)="changeRole(user.id)">{{user.isAdmin? "Change to user"
+                                : "Make admin"}}</button></td>
+                        <td><button *ngIf="user.id != currentUserId" class="btn btn-danger" (click)="delete(user.id)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-dark" [routerLink]="'/admin'">Back</button>
+    </div>
+</div>

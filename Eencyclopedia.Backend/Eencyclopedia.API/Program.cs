@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 using System.Text;
 using Eencyclopedia.Application.Abstractions;
 using Eencyclopedia.Application.MappingProfile;
@@ -6,7 +5,6 @@ using Eencyclopedia.Application.Models;
 using Eencyclopedia.Application.Services;
 using Eencyclopedia.Domain.Abstractions;
 using Eencyclopedia.Domain.Entities;
-using Eencyclopedia.Infrastructure;
 using Eencyclopedia.Infrastructure.Data;
 using Eencyclopedia.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -40,6 +38,7 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 builder.Services.AddScoped<IAuthorsBooksRepository, AuthorsBooksRepository>();
 builder.Services.AddScoped<ISearchEngineService, SearchEngineService>();
+builder.Services.AddScoped<IMailService, MailService>();
 
 builder.Services.AddScoped(typeof(Lazy<>), typeof(LazyInstance<>));
 

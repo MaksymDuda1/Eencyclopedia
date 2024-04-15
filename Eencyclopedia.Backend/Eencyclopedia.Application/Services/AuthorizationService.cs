@@ -13,14 +13,17 @@ public class AuthorizationService : IAuthorizationService
     private readonly IJwtService _jwtService;
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
+    private readonly IMailService _mailService;
 
     public AuthorizationService(IJwtService jwtService,
         UserManager<User> userManager,
-        SignInManager<User> signInManager)
+        SignInManager<User> signInManager,
+        IMailService mailService)
     {
         _jwtService = jwtService;
         _userManager = userManager;
         _signInManager = signInManager;
+        _mailService = mailService;
     }
 
     public async Task<TokenModel> LoginUser(LoginDto loginDto)
@@ -44,6 +47,7 @@ public class AuthorizationService : IAuthorizationService
         }
         
         var claims = await _userManager.GetClaimsAsync(user);
+        claims.Add(new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()));
         _jwtService.AddRolesToClaims(claims, roles);
         var token = _jwtService.CreateToken(claims);
 
@@ -83,6 +87,7 @@ public class AuthorizationService : IAuthorizationService
         };
         
         _jwtService.AddRolesToClaims(authClaims, roles);
+        _mailService.SendRegistrationEmail(registrationDto.Email, userName);
 
         var token = _jwtService.CreateToken(authClaims);
 

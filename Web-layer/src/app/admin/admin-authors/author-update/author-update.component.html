@@ -1,0 +1,32 @@
+<div class="container-md ">
+    <div class="header">
+        <span>Update page</span>
+    </div>
+    <form>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Full name:</label>
+            <input type="text" name="name" class="form-control area" [(ngModel)]="author.fullName" id="name">
+        </div>
+        <div class="mb-3">
+
+        <label for="start-date">Birth date:</label>
+        <input type="date" id="start-date" name="start-date" [(ngModel)]="author.birthDate" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="Name" class="form-label">Description:</label>
+            <input type="text" name="description" class="form-control area" [(ngModel)]="author.description"
+                id="description">
+        </div>
+
+        <div class="mb-3">
+            <label for="Name" class="form-label">Image:</label>
+            <input type="file" name="image" class="form-control area" (change)="onFileChange($event)" id="image">
+        </div>
+
+        <div class="btns">
+            <button type="submit" name="stage7" class="btn btn-dark" (click)="onUpdate()">Submit</button>
+            <button class="btn btn-dark" [routerLink]="['/admin-authors']">Back</button>
+        </div>
+    </form>
+</div>

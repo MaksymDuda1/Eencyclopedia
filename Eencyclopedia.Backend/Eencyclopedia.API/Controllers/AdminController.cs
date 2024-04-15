@@ -1,8 +1,10 @@
 using Eencyclopedia.Application.Abstractions;
 using Eencyclopedia.Domain.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eencyclopedia.API.Controllers;
+
 
 [ApiController]
 [Route("api/admin")]
@@ -16,11 +18,11 @@ public class AdminController: ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> ChangeUserRole(UserDto userDto)
+    public async Task<IActionResult> ChangeUserRole(ChangeRoleDto request)
     {
         try
         {
-            await _adminService.ChangeUserRole(userDto);
+            await _adminService.ChangeUserRole(request);
 
             return Ok();
         }

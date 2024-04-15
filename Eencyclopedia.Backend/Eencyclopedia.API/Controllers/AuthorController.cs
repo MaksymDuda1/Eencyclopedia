@@ -40,7 +40,7 @@ public class AuthorController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<CreateAuthorDto>> CreateAuthor([FromBody] CreateAuthorDto request)
+    public async Task<ActionResult<CreateAuthorDto>> CreateAuthor([FromForm] CreateAuthorDto request)
     {
         var author = await _authorService.CreateAuthor(request);
 
@@ -48,7 +48,7 @@ public class AuthorController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<CreateAuthorDto>>  UpdateAuthor([FromBody] UpdateAuthorDto request)
+    public async Task<ActionResult<CreateAuthorDto>>  UpdateAuthor([FromForm] UpdateAuthorDto request)
     {
         try
         {

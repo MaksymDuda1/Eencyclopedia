@@ -10,13 +10,14 @@ namespace Eencyclopedia.Application.Services;
 
 public class AdminService(UserManager<User> _userManager) : IAdminService
 {
-    public async Task ChangeUserRole(UserDto userDto)
+    public async Task ChangeUserRole(ChangeRoleDto changeRoleDto)
     {
-        var user = await _userManager.FindByIdAsync(userDto.Id.ToString());
+        var user = await _userManager.FindByIdAsync(changeRoleDto.UserId.ToString());
 
         if (user == null)
             throw new Exception("User does not exist");
-
+        
+        var claims =await _userManager.GetClaimsAsync(user);
         var currentRoles = await _userManager.GetRolesAsync(user);
 
         if (currentRoles.Contains("Admin"))
@@ -24,12 +25,14 @@ public class AdminService(UserManager<User> _userManager) : IAdminService
             await _userManager.RemoveFromRoleAsync(user, "Admin");
             await _userManager.AddToRoleAsync(user, "User");
         }
-        else if (currentRoles.Contains("User"))
+        else 
         {
             await _userManager.RemoveFromRoleAsync(user, "User");
             await _userManager.AddToRoleAsync(user, "Admin");
         }
 
+        /*await _userManager.ReplaceClaimAsync(user, claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Role),
+            new Claim(JwtClaimTypes.Role, role.Name));*/
         await _userManager.UpdateAsync(user);
     }
 }

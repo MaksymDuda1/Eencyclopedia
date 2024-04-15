@@ -1,6 +1,6 @@
 namespace Eencyclopedia.Domain.DTOs;
 
-public class AddBookToFavoritesDto
+public class FavoriteBooksDto
 {
     public Guid UserId { get; set; }
 

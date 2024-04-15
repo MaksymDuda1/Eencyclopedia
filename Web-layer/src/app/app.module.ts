@@ -23,6 +23,13 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './books/books.component';
 import { DetailBookComponent } from './books/detail-book/detail-book.component';
+import { TopMenuComponent } from './top-menu/top-menu.component';
+import { FavoriteBooksComponent } from './favorite-books/favorite-books.component';
+import { AdminAuthorsComponent } from './admin/admin-authors/admin-authors.component';
+import { AuthorCreateComponent } from './admin/admin-authors/author-create/author-create.component';
+import { AuthorUpdateComponent } from './admin/admin-authors/author-update/author-update.component';
+import { PublisherCreateComponent } from './admin/admin-publishers/publisher-create/publisher-create.component';
+import { PublisherUpdateComponent } from './admin/admin-publishers/publisher-update/publisher-update.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +44,14 @@ import { DetailBookComponent } from './books/detail-book/detail-book.component';
     RegistrationComponent,
     HomeComponent,
     BooksComponent,
-    DetailBookComponent
+    DetailBookComponent,
+    TopMenuComponent,
+    FavoriteBooksComponent,
+    AdminAuthorsComponent,
+    AuthorCreateComponent,
+    AuthorUpdateComponent,
+    PublisherCreateComponent,
+    PublisherUpdateComponent
   ],
   imports: [
     BrowserModule,

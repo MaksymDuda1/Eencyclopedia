@@ -16,4 +16,4 @@ public class Publisher
     public string? Image { get; set; }
 
     public List<Book>? PublishedBooks { get; set; } = new List<Book>();
-}
+}   

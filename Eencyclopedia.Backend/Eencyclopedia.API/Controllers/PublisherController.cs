@@ -46,7 +46,7 @@ public class PublisherController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<PublisherDto>> CreatePublisher([FromBody] CreatePublisherDto request)
+    public async Task<ActionResult<PublisherDto>> CreatePublisher([FromForm] CreatePublisherDto request)
     {
         try
         {
@@ -61,7 +61,7 @@ public class PublisherController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<PublisherDto>> UpdatePublisher([FromBody] UpdatePublisherDto updatePublisherDto)
+    public async Task<ActionResult<PublisherDto>> UpdatePublisher([FromForm] UpdatePublisherDto updatePublisherDto)
     {
         try
         {

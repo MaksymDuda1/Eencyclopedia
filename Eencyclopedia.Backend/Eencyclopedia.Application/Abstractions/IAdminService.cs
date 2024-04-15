@@ -4,5 +4,5 @@ namespace Eencyclopedia.Application.Abstractions;
 
 public interface IAdminService
 {
-    Task ChangeUserRole(UserDto userDto);
+    Task ChangeUserRole(ChangeRoleDto changeRoleDto);
 }

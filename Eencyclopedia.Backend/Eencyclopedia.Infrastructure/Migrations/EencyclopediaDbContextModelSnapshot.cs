@@ -116,6 +116,9 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
                     b.HasKey("BookId", "UserId");
 
                     b.HasIndex("UserId");
@@ -177,13 +180,13 @@ namespace Eencyclopedia.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ce9f5ee2-e080-4763-b3ee-393bd939992a"),
+                            Id = new Guid("f570a275-ef72-4b0b-b7ad-08f20c70afea"),
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("ce02397e-796a-4ff3-be59-e614bd426e15"),
+                            Id = new Guid("1c6dab3d-aa33-465b-b665-b94ad781c50d"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

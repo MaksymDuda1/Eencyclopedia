@@ -17,18 +17,16 @@ public class UserService(
     public async Task<List<UserDto>> GetAll()
     {
         var users = await _unitOfWork.Users.GetAllAsync(u => u.FavoriteBooks);
-
-        foreach (var user in users)
+        var usersDto = users.Select(_mapper.Map<UserDto>).ToList();
+        
+        foreach (var user in usersDto)
         {
-            var role =  await _userManager.GetRolesAsync(user);
+            var role =  await _userManager.GetRolesAsync(_mapper.Map<User>(user));
 
-            foreach (var r in role)
-            {
-                Console.WriteLine(r);
-            }
+            user.IsAdmin = role.Contains("Admin");
         }
 
-        return users.Select(_mapper.Map<UserDto>).ToList();
+        return usersDto;
     }
     
     public async Task<List<BookDto>> GetFavoriteBooks(Guid id)
@@ -46,10 +44,11 @@ public class UserService(
         return favoriteBooks;
     }
 
-    public async Task AddBookToFavorite(AddBookToFavoritesDto addBookToFavoritesDto)
+    public async Task AddBookToFavorite(FavoriteBooksDto addBookToFavoritesDto)
     {
         var user = await _unitOfWork.Users.GetSingleByConditionAsync(
-            u => u.Id == addBookToFavoritesDto.UserId);
+            u => u.Id == addBookToFavoritesDto.UserId,
+            u => u.FavoriteBooks);
 
         var book = await _unitOfWork.Books.GetSingleByConditionAsync(
             b => b.Id == addBookToFavoritesDto.BookId);
@@ -64,15 +63,35 @@ public class UserService(
             bu => bu.UserId == user.Id && bu.BookId == book.Id);
 
         if (existingAssociation != null)
-            throw new Exception("The book is already in the user's favorite books list.");
-
-        var newAssociation = new BookUser
         {
-            UserId = user.Id,
-            BookId = book.Id
-        };
+            await _unitOfWork.BooksUsers.Delete(existingAssociation);
+        }
+        else
+        {
+            var newAssociation = new BookUser
+            {
+                UserId = user.Id,
+                BookId = book.Id
+            };
 
-        await _unitOfWork.BooksUsers.InsertAsync(newAssociation);
+            await _unitOfWork.BooksUsers.InsertAsync(newAssociation);            
+        }
+
+        await _unitOfWork.SaveAsync();
+    }
+
+    public async Task<bool> IsInFavorite(FavoriteBooksDto favoriteBooksDto)
+    {
+        var book = await _unitOfWork.Books
+            .GetSingleByConditionAsync(b => b.Id == favoriteBooksDto.BookId,
+                b => b.Users);
+        
+        return book.Users.Any(u => u.Id == favoriteBooksDto.UserId);
+    }
+
+    public async Task Delete(Guid id)
+    {
+        await _unitOfWork.Users.Delete(id);
         await _unitOfWork.SaveAsync();
     }
 }

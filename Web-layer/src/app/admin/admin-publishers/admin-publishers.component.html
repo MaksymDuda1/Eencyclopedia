@@ -1,1 +1,29 @@
-<p>admin-publishers works!</p>
+<div class="publishers">
+    <span>Publishers:</span>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col"><button class="btn btn-dark" [routerLink]="'create-publisher/'">Add</button></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let publisher of publishers">
+                    <td>1</td>
+                    <td>{{publisher.name}}</td>
+                    <td>{{publisher.description}}</td>
+                    <td><button class="btn btn-warning" [routerLink]="'update-publisher/' + publisher.id">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="delete(publisher.id)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-dark" [routerLink]="'/admin'">Back</button>
+
+    </div>
+</div>
+

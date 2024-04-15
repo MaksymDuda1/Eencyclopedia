@@ -1,0 +1,21 @@
+.container-lg {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.book{
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px;
+    border: 2px solid #000;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Додаємо тінь для більшого об'єму */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Плавність переходів */
+}
+
+

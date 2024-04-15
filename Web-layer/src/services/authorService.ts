@@ -13,7 +13,7 @@ export class AuthorService{
     }
 
     getById(id:string): Observable<any>{
-        return this.client.get<AuthorModel>('api/authors' + id);
+        return this.client.get<AuthorModel>('api/authors/' + id);
     }
 
     createAuthor(createAuthorModel: FormData) : Observable<any>{
@@ -21,10 +21,10 @@ export class AuthorService{
     }
 
     updateAuthor(updateAuthorModel: FormData) : Observable<any>{
-        return this.client.put('api/auhtors', updateAuthorModel);
+        return this.client.put('api/authors', updateAuthorModel);
     }
 
     deleteAuthor(id: string){
-        return this.client.delete('api/authors' + id);
+        return this.client.delete('api/authors/' + id);
     }
 }

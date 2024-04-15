@@ -6,5 +6,7 @@ public interface IUserService
 {
     Task<List<UserDto>> GetAll();
     Task<List<BookDto>> GetFavoriteBooks(Guid id);
-    Task AddBookToFavorite(AddBookToFavoritesDto addBookToFavoritesDto);
+    Task AddBookToFavorite(FavoriteBooksDto addBookToFavoritesDto);
+    Task<bool> IsInFavorite(FavoriteBooksDto favoriteBooksDto);
+    Task Delete(Guid id);
 }

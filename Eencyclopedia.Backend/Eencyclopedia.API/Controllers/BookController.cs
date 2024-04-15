@@ -49,7 +49,7 @@ public class BookController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<BookDto>> CreateBook([FromBody] CreateBookDto request)
+    public async Task<ActionResult<BookDto>> CreateBook([FromForm] CreateBookDto request)
     {
         var book = await _bookService.CreateBook(request);
 
@@ -86,19 +86,4 @@ public class BookController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-
-    /*[HttpPut("image")]
-    public async Task<IActionResult> AddBookImage([FromForm(Name = "Image")] AddBookImageDto addBookImageDto)
-    {
-        try
-        {
-            await _bookService.AddBookImage(addBookImageDto);
-
-            return Ok();
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }*/
 }

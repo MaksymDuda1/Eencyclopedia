@@ -20,7 +20,20 @@ export class AdminBooksComponent implements OnInit {
     return genreValueToString(genre);
   }
 
- 
+  delete(id: string) {
+    this.bookService.deleteBook(id).subscribe(
+      () => {
+        console.log('Book deleted successfully');
+        this.bookService.getAll().subscribe(data => {
+          this.books = data;
+        });
+      },
+      (error) => {
+        console.error('Error deleting book:', error);
+      }
+    );
+  }
+
   ngOnInit(): void {
     this.bookService.getAll().subscribe(data => {
       this.books = data;

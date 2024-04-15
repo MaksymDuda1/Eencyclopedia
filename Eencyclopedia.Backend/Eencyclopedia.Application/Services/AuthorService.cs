@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Eencyclopedia.Application.Services;
 
-public class AuthorService(IUnitOfWork _unitOfWork, IMapper _mapper) : IAuthorService
+public class AuthorService(IFileService _fileService,IUnitOfWork _unitOfWork, IMapper _mapper) : IAuthorService
 {
     public async Task<List<AuthorDto>> GetAllAuthors()
     {
@@ -29,6 +29,9 @@ public class AuthorService(IUnitOfWork _unitOfWork, IMapper _mapper) : IAuthorSe
     {
         var authorDto = _mapper.Map<AuthorDto>(author);
 
+        if (author.Image != null)
+            authorDto.Image = await _fileService.UploadImage(author.Image);
+        
         await _unitOfWork.Authors.InsertAsync(_mapper.Map<Author>(authorDto));
         await _unitOfWork.SaveAsync();
 
@@ -44,7 +47,10 @@ public class AuthorService(IUnitOfWork _unitOfWork, IMapper _mapper) : IAuthorSe
         authorDto.FullName = updateAuthorDto.FullName;
         authorDto.Description = updateAuthorDto.Description;
         authorDto.BirthDate = updateAuthorDto.BirthDate;
-        authorDto.Image = updateAuthorDto.Image; // add service for image uploading
+
+        if (updateAuthorDto.Image != null)
+            authorDto.Image = await _fileService.UploadImage(updateAuthorDto.Image);
+            
 
         _unitOfWork.Authors.Update(_mapper.Map<Author>(authorDto));
         await _unitOfWork.SaveAsync();

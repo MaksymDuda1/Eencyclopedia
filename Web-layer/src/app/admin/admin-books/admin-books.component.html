@@ -13,7 +13,7 @@
                     <th scope="col">Author</th>
                     <th scope="col">Publisher</th>
                     <th scope="col">Actions</th>
-                    <th scope="col"><button class="btn btn-dark">Add</button></th>
+                    <th scope="col"><button class="btn btn-dark" [routerLink]="'create-book/'">Add</button></th>
                 </tr>
             </thead>
             <tbody>
@@ -28,11 +28,12 @@
                     <td *ngFor="let author of book.authors">{{author.fullName}}</td>
                     <td>{{ book.publisher ? book.publisher.name : 'book without publisher' }}</td>
                     <td><button class="btn btn-warning" [routerLink]="'update-book/' + book.id">Edit</button></td>
-                    <td><button class="btn btn-danger" >delete</button></td>
+                    <td><button class="btn btn-danger" (click)="delete(book.id)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
+        <button class="btn btn-dark" [routerLink]="'/admin'">Back</button>
+
     </div>
 </div>
 
-<router-outlet></router-outlet>

@@ -1,0 +1,15 @@
+<nav class="navbar navbar-Light ">
+    <div class="logo">
+        <a routerLink="/">
+            <span class="logo-text">Julai loh</span>
+        </a>
+    </div>
+
+    <div class="div">
+        <button *ngIf="isAuthorized" class="btn btn-dark" (click)="onExit()">Exit</button>
+        <button *ngIf="isAuthorized" class="btn btn-dark" [routerLink]="'/favorite-books'" >Favorite books</button>
+        <button  *ngIf="!isAuthorized" class="btn btn-dark" [routerLink]="'/login'">Sign in</button>
+        <button *ngIf="!isAuthorized" class="btn btn-dark" [routerLink]="'/registration'">Sign up</button>
+    </div>
+
+</nav>

@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace Eencyclopedia.Domain.DTOs;
 
 public class CreatePublisherDto
@@ -6,5 +8,5 @@ public class CreatePublisherDto
     
     public string Description { get; set; } = null!;
     
-    public string? Image { get; set; }
+    public IFormFile? Image { get; set; }
 }

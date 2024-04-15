@@ -21,4 +21,6 @@ public interface IBaseRepository<T> where T: class
     void Update(T entity);
 
     Task Delete(Guid id);
+    Task Delete(T entity);
+
 }

@@ -66,4 +66,9 @@ public class BaseRepository<T>(EencyclopediaDbContext _context)
 
         _context.Remove(t);
     }
+
+    public async Task Delete(T entity)
+    {
+         _context.Set<T>().Remove(entity);
+    }
 }

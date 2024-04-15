@@ -1,0 +1,29 @@
+<div class="authors">
+    <span>Authors:</span>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Full name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Birth date</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col"><button class="btn btn-dark" [routerLink]="'create-author/'">Add</button></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let author of authors">
+                    <td>{{author.fullName}}</td>
+                    <td>{{author.description}}</td>
+                    <td>{{author.birthDate}}</td>
+                    <td><button class="btn btn-warning" [routerLink]="'update-author/' + author.id">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="delete(author.id)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-dark" [routerLink]="'/admin'">Back</button>
+
+    </div>
+</div>
+

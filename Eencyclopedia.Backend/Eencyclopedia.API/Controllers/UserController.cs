@@ -1,6 +1,7 @@
 using Eencyclopedia.Application.Abstractions;
 using Eencyclopedia.Domain.DTOs;
 using Eencyclopedia.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eencyclopedia.API.Controllers;
@@ -37,8 +38,21 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpPost("addToFavorites")]
-    public async Task<IActionResult> AddBookToFavorite([FromBody] AddBookToFavoritesDto request)
+    [HttpGet("favoriteBook")]
+    public async Task<ActionResult<bool>> IsInFavorite([FromQuery] FavoriteBooksDto request)
+    {
+        try
+        {
+            return Ok(await _userService.IsInFavorite(request));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpPost("addToFavorite")]
+    public async Task<IActionResult> AddBookToFavorite([FromBody] FavoriteBooksDto request)
     {
         try
         {
@@ -50,5 +64,11 @@ public class UserController : ControllerBase
         {
             return BadRequest(e.Message);
         }
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task Delete(Guid id)
+    {
+        await _userService.Delete(id);
     }
 }

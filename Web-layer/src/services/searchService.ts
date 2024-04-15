@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 @Injectable({ providedIn: "root" })
 export class SearchService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private client: HttpClient) { }
 
     public searchBooks(searchParams: string): Observable<any> {
         let params = new HttpParams();
@@ -14,6 +14,6 @@ export class SearchService {
                 params = params.append("SearchQuery", searchParams);
             }
         });
-        return this.http.get<any>('api/search', { params });
+        return this.client.get<any>('api/search', { params });
     }
 }

@@ -155,3 +155,6 @@
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/JWT.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/Newtonsoft.Json.dll
 /home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/obj/Debug/net8.0/Eencyclopedia.API.csproj.CopyComplete
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/BouncyCastle.Cryptography.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/MailKit.dll
+/home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/bin/Debug/net8.0/MimeKit.dll

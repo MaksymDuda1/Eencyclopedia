@@ -25,7 +25,7 @@ export class BookUpdateComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if(id != null){
-        this.getById(id);
+         this.getById(id);
       }
     })
   }
@@ -41,7 +41,7 @@ export class BookUpdateComponent implements OnInit {
 
   getById(id: string){
     this.bookService.getById(id).subscribe(data => {
-      this.book == data;
+      this.book = data;
       if(this.book.image)
         this.trustPath = this.sanitizer.bypassSecurityTrustUrl(this.book.image);
     })

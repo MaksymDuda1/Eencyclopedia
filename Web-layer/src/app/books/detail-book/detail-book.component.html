@@ -1,1 +1,50 @@
-<p>detail-book works!</p>
+<div class="container">
+    <div class="book">
+        <div class="img-wrapper">
+            <img src="../../../../Eencyclopedia.Backend/Eencyclopedia.API/+{{book.image}}" alt="qwe">
+        </div>
+        <div class="name">
+            <span>Name:</span>
+            {{book.name}}
+        </div>
+        <div class="desc">
+            <span>description:</span>
+            {{book.description}}
+        </div>
+        <div class="genre">
+            <span>genre:</span>
+            {{getName(book.genre)}}
+        </div>
+        <div class="year">
+            <span>Year of edition:</span>
+            {{book.yearOfEdition}}
+        </div>
+        <div class="page-amount">
+            <span>Page amount:</span>
+            {{book.pageAmount}}
+        </div>
+
+        <div class="authors">
+            <span>authors: </span>
+            <span *ngFor="let author of book.authors">{{author.fullName}}</span>
+        </div>
+        <div class="publisher">
+            <span>publisher:</span>
+            {{ book.publisher ? book.publisher.name : 'book without publisher' }}
+        </div>
+        <div class="add-to-favorite" *ngIf="isAuthorized">
+            <button (click)="addToFavorite()">{{isFavorite? "Remove from favorite": "Add to favorite"}}</button>
+        </div>
+    </div>
+    {{errorMessage}}
+</div>
+
+<div class="container">
+    <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;">
+        <iframe sandbox="allow-scripts"
+            style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" [src]='safeUrl'
+            seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true">
+        </iframe>
+    </div>
+</div>
+<button class="btn btn-dark">Back</button>

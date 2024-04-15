@@ -7,5 +7,4 @@ namespace Eencyclopedia.Infrastructure.Repositories;
 public class BooksUsersRepository(EencyclopediaDbContext context) 
     : BaseRepository<BookUser>(context), IBooksUsersRepository
 {
-    
 }

@@ -6,7 +6,7 @@ using Eencyclopedia.Domain.Entities;
 
 namespace Eencyclopedia.Application.Services;
 
-public class PublisherService(IUnitOfWork _unitOfWork,IMapper _mapper) : IPublisherService
+public class PublisherService(IFileService _fileService,IUnitOfWork _unitOfWork,IMapper _mapper) : IPublisherService
 {
     public async Task<List<PublisherDto>> GetAllPublishers()
     {
@@ -29,6 +29,9 @@ public class PublisherService(IUnitOfWork _unitOfWork,IMapper _mapper) : IPublis
     {
         var publisherDto = _mapper.Map<PublisherDto>(createPublisherDto);
 
+        if (createPublisherDto.Image != null)
+            publisherDto.Image = await _fileService.UploadImage(createPublisherDto.Image);
+
         await _unitOfWork.Publishers.InsertAsync(_mapper.Map<Publisher>(publisherDto));
         await _unitOfWork.SaveAsync();
 
@@ -42,8 +45,10 @@ public class PublisherService(IUnitOfWork _unitOfWork,IMapper _mapper) : IPublis
 
         publisherDto.Name = updatePublisherDto.Name;
         publisherDto.Description = updatePublisherDto.Description;
-        publisherDto.Image = updatePublisherDto.Image;
-        
+
+        if (updatePublisherDto.Image != null)
+            publisherDto.Image = await _fileService.UploadImage(updatePublisherDto.Image);
+            
         _unitOfWork.Publishers.Update(_mapper.Map<Publisher>(publisherDto));
         await _unitOfWork.SaveAsync();
 
