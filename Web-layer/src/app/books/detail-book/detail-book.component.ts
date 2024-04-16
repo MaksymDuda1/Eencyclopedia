@@ -8,13 +8,13 @@ import { LocalService } from '../../../services/localService';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FavoriteBookDto } from '../../../models/addBookToFavorite';
 import { UserService } from '../../../services/user.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detail-book',
   templateUrl: './detail-book.component.html',
   styleUrl: './detail-book.component.scss'
 })
+
 export class DetailBookComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private bookService: BookService,
@@ -30,14 +30,17 @@ export class DetailBookComponent implements OnInit {
     })
   }
 
+  private path = '/assets/Images/';
   bookId: string | null = '';
   userId: string = '';
   book: BookModel = new BookModel();
   errorMessage: string = '';
   safeUrl: SafeResourceUrl | null = null;
+  safeImage: SafeResourceUrl | null = null;
   isAuthorized: boolean = false;
   favoriteBooks: BookModel[] = [];
   isFavorite: boolean = false;
+
 
   getName(genre: number) {
     return genreValueToString(genre);
@@ -46,11 +49,16 @@ export class DetailBookComponent implements OnInit {
   getById(id: string) {
     this.bookService.getById(id).subscribe(data => {
       this.book = data;
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.book.path);
+      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.book.path); 
+      this.safeImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.path + this.book.image);
     },
       errorResponse => {
         this.errorMessage = errorResponse.error;
       })
+  }
+
+  sanitize(path: string): SafeResourceUrl{
+    return this.sanitizer.bypassSecurityTrustResourceUrl(path);
   }
 
   addToFavorite() {
@@ -60,7 +68,7 @@ export class DetailBookComponent implements OnInit {
     data.userId = this.userId;
 
     this.userService.addBookToFavorite(data).subscribe(() => {
-      if(this.isFavorite)
+      if (this.isFavorite)
         this.isFavorite = false;
       else
         this.isFavorite = true;
@@ -73,7 +81,7 @@ export class DetailBookComponent implements OnInit {
       this.isAuthorized = true;
       let decodedData = this.jwtHelperService.decodeToken(token);
       this.userId = decodedData.jti;
-      if(this.bookId)
+      if (this.bookId)
         this.userService.isInFavorite(this.userId, this.bookId).subscribe(data => {
           this.isFavorite = data;
         })

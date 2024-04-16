@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { BookService } from '../../../../services/bookService';
 import { BookModel } from '../../../../models/bookModel';
-import { UpdateBookModel } from '../../../../models/updateBookModel';
-import { Observable, concatWith } from 'rxjs';
 import { PublisherService } from '../../../../services/publisherService';
 import { PublisherModel } from '../../../../models/publisherModel';
-import { ImgSanitizerService } from '../../../../services/imgSanitizerService';
 import { ActivatedRoute } from '@angular/router';
 import { genreStringToValue, getGenreOptions } from '../../../../enums/genre';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -20,8 +17,7 @@ export class BookUpdateComponent implements OnInit {
     private bookService: BookService,
     private publisherService: PublisherService,
     public sanitizer: DomSanitizer,
-    private route: ActivatedRoute
-  ) {
+    private route: ActivatedRoute) {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if(id != null){

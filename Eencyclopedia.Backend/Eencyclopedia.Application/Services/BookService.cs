@@ -43,36 +43,46 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
 
     public async Task<BookDto> CreateBook(CreateBookDto createBookDto)
     {
-        var book = new BookDto()
+
+        try
         {
-            Id = Guid.NewGuid(),
-            Name = createBookDto.Name,
-            Path = createBookDto.Path,
-            Description = createBookDto.Description,
-            Genre = createBookDto.Genre,
-            YearOfEdition = createBookDto.YearOfEdition,
-            PageAmount = createBookDto.PageAmount,
-        };
-        
-        book.Image =  _fileService.UploadImage(createBookDto.Image).ToString();
-        book.Publisher =_mapper.Map<PublisherDto>(await _unitOfWork.Publishers
-            .GetSingleByConditionAsync(p => p.Id == createBookDto.PublisherId));
-        
-        var bookEntity = _mapper.Map<Book>(book);
-        
-        foreach (var authorId in createBookDto.Authors)
-        {
-            await _unitOfWork.AuthorsBooks.InsertAsync(new AuthorBook
+            var book = new BookDto
             {
-                Book = bookEntity,
-                AuthorId = authorId
-                
-            });
+                Name = createBookDto.Name,
+                Path = createBookDto.Path,
+                Description = createBookDto.Description,
+                Genre = createBookDto.Genre,
+                YearOfEdition = createBookDto.YearOfEdition,
+                PageAmount = createBookDto.PageAmount,
+            };
+            
+            var publisher = await _unitOfWork.Publishers
+                .GetSingleByConditionAsync(p => p.Id == createBookDto.PublisherId);
+
+            if (publisher == null)
+                throw new Exception("Publisher doesnt exist");
+            
+            
+            book.PublisherId = publisher.Id;
+            book.Image = await _fileService.UploadImage(createBookDto.Image);
+
+            foreach (var authorId in createBookDto.Authors)
+            {
+                await _unitOfWork.AuthorsBooks.InsertAsync(new AuthorBook
+                {
+                    Book = _mapper.Map<Book>(book),
+                    AuthorId = authorId
+                });
+            }
+
+            await _unitOfWork.SaveAsync();
+
+            return book;
         }
-
-        await _unitOfWork.SaveAsync();
-
-        return book;
+        catch (Exception e )
+        {
+            throw new Exception(e.Message);
+        }
     }
 
     public async Task<BookDto> UpdateBook(UpdateBookDto updateBookDto)

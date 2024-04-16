@@ -46,7 +46,6 @@ export class AdminUsersComponent implements OnInit {
     if (token) {
       let decodedData = this.jwtHeplerService.decodeToken(token);
       this.currentUserId = decodedData.jti;
-      console.log(this.currentUserId);
     }
     this.userService.getAll().subscribe(data => {
       this.users = data;
