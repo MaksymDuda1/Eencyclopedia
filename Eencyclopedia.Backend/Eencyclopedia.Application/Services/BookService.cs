@@ -55,15 +55,18 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
                 YearOfEdition = createBookDto.YearOfEdition,
                 PageAmount = createBookDto.PageAmount,
             };
-            
-            var publisher = await _unitOfWork.Publishers
-                .GetSingleByConditionAsync(p => p.Id == createBookDto.PublisherId);
 
-            if (publisher == null)
-                throw new Exception("Publisher doesnt exist");
+            if (createBookDto.PublisherId != null)
+            {
+                var publisher = await _unitOfWork.Publishers
+                    .GetSingleByConditionAsync(p => p.Id == createBookDto.PublisherId);
+
+                if (publisher == null)
+                    throw new Exception("Publisher doesnt exist");
             
+                book.PublisherId = publisher.Id;
+            }
             
-            book.PublisherId = publisher.Id;
             book.Image = await _fileService.UploadImage(createBookDto.Image);
 
             foreach (var authorId in createBookDto.Authors)

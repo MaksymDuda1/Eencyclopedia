@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Eencyclopedia.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b9ce6938fcbd1f5893cbbd068f7d92e37263875")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac465555937b42f2b2ac4bcf806da821b6deed38")]
 [assembly: System.Reflection.AssemblyProductAttribute("Eencyclopedia.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Eencyclopedia.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
