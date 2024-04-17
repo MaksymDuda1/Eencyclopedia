@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Eencyclopedia.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac465555937b42f2b2ac4bcf806da821b6deed38")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da672d0f05227332d12fa0760cc60baf25cafe24")]
 [assembly: System.Reflection.AssemblyProductAttribute("Eencyclopedia.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Eencyclopedia.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

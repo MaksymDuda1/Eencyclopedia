@@ -14,7 +14,8 @@ export class PublisherCreateComponent {
   publisher: PublisherModel = new PublisherModel();
   formData = new FormData();
   selectedFile: File | null = null;
-  
+  errorMessage: string = '';
+
   onCreate(){
     this.formData.append("Name", this.publisher.name);
     this.formData.append("Description", this.publisher.description);
@@ -23,7 +24,12 @@ export class PublisherCreateComponent {
 
     this.publisherService.create(this.formData).subscribe(data => {
       this.publisher = data;
-    })
+      this.errorMessage = "Created";
+    }
+  ,
+  errorResponse =>{
+    this.errorMessage = errorResponse.error;
+  })
   }
 
   onFileChange(event: any) {

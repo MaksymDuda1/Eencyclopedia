@@ -67,7 +67,8 @@ public class BookService(IFileService _fileService, IUnitOfWork _unitOfWork, IMa
                 book.PublisherId = publisher.Id;
             }
             
-            book.Image = await _fileService.UploadImage(createBookDto.Image);
+            if(createBookDto.Image != null)
+                book.Image = await _fileService.UploadImage(createBookDto.Image);
 
             foreach (var authorId in createBookDto.Authors)
             {

@@ -50,6 +50,7 @@ export class BookCreateComponent {
     this.bookService.createBook(this.formData).subscribe(
       (data) => {
         this.book = data;
+        this.errorMessage = "Created";
       },
       (errorResponse) => {
         this.errorMessage = errorResponse.error;

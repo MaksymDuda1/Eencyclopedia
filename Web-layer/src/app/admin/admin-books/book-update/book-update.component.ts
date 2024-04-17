@@ -34,6 +34,7 @@ export class BookUpdateComponent implements OnInit {
   genres = getGenreOptions();
   selectedGenre: string = '';
   trustPath: any;
+  errorMessage: string = '';
 
   getById(id: string){
     this.bookService.getById(id).subscribe(data => {
@@ -59,6 +60,10 @@ export class BookUpdateComponent implements OnInit {
 
     this.bookService.updateBook(this.formData).subscribe((data) => {
       this.book = data;
+      this.errorMessage = "Updated"
+    },
+    errorResponse => {
+      this.errorMessage = errorResponse.error;
     });
   }
 

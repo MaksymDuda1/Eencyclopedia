@@ -1,15 +1,14 @@
-.img-holder{
+.img-wrapper{
     height: 32px;
     width: 32px;
 }
 
-.img-holder img{
+.img-wrapper img{
     height: auto;
     width: 100%;
     object-fit: cover;
     align-items: center;
 }
-
 
 .table td {
     overflow: hidden;

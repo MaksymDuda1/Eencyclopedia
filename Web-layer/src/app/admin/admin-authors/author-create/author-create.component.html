@@ -22,7 +22,7 @@
             <label for="Name" class="form-label">Image:</label>
             <input type="file" name="image" class="form-control area" (change)="onFileChange($event)" id="image">
         </div>
-
+        {{errorMessage}}
         <div class="btns">
             <button type="submit" name="stage7" class="btn btn-dark" (click)="onCreate()">Submit</button>
             <button class="btn btn-dark" [routerLink]="['/admin-authors']">Back</button>

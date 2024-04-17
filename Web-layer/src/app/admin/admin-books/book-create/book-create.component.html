@@ -1,7 +1,7 @@
 <div class="container">
     <div class="container-md ">
         <div class="header">
-            <span>Update page</span>
+            <span>Create page</span>
         </div>
         <form>
             <div class="mb-3">
@@ -64,9 +64,7 @@
                     </div>
                 </div>
             </div>
-
-    
-    
+            {{errorMessage}}
             <div class="btns">
                 <button type="submit" name="stage7" class="btn btn-dark" (click)="onCreate()">Submit</button>
                 <button class="btn btn-dark" [routerLink]="['/admin-books']">Back</button>

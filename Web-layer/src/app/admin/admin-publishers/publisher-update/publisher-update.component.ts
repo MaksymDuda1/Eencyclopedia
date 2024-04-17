@@ -28,6 +28,7 @@ export class PublisherUpdateComponent {
   formData = new FormData();
   selectedFile: File | null = null;
   trustPath: any;
+  errorMessage: string = '';
 
   getById(id: string){
     this.publisherService.getById(id).subscribe(data => {
@@ -46,6 +47,10 @@ export class PublisherUpdateComponent {
 
     this.publisherService.update(this.formData).subscribe((data) => {
       this.publisher = data;
+      this.errorMessage = "Updated"
+    },
+    errroResponse => {
+      this.errorMessage = errroResponse.error;
     });
   }
 

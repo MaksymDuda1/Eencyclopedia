@@ -13,6 +13,7 @@ export class AuthorCreateComponent {
   author: AuthorModel = new AuthorModel();
   formData = new FormData();
   selectedFile: File | null = null;
+  errorMessage: string = '';
   
   onCreate(){
     this.formData.append("FullName", this.author.fullName);
@@ -23,7 +24,11 @@ export class AuthorCreateComponent {
 
     this.authorService.createAuthor(this.formData).subscribe(data => {
       this.author = data;
-    })
+      this.errorMessage = "Created";
+    },
+  errorResponse => {
+    this.errorMessage = errorResponse;
+  })
   }
 
   onFileChange(event: any) {

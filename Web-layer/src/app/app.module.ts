@@ -30,6 +30,8 @@ import { AuthorCreateComponent } from './admin/admin-authors/author-create/autho
 import { AuthorUpdateComponent } from './admin/admin-authors/author-update/author-update.component';
 import { PublisherCreateComponent } from './admin/admin-publishers/publisher-create/publisher-create.component';
 import { PublisherUpdateComponent } from './admin/admin-publishers/publisher-update/publisher-update.component';
+import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { PublisherDetailComponent } from './publisher-detail/publisher-detail.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { PublisherUpdateComponent } from './admin/admin-publishers/publisher-upd
     AuthorCreateComponent,
     AuthorUpdateComponent,
     PublisherCreateComponent,
-    PublisherUpdateComponent
+    PublisherUpdateComponent,
+    AuthorDetailComponent,
+    PublisherDetailComponent
   ],
   imports: [
     BrowserModule,

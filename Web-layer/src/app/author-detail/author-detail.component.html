@@ -1,0 +1,51 @@
+<div class="container-lg">
+    <div class="img-wrapper">
+        <img [src]="'assets/Images/' + author.image" alt="qwe">
+    </div>
+    <div class="name">
+        {{author.fullName}}
+    </div>
+    <div class="birthDate">
+        {{author.birthDate}}
+    </div>
+    <div class="desc">
+        {{author.description}}
+    </div>
+</div>
+
+<div class="container d-flex">
+        <span>Author's books:</span>
+    <div class="book" *ngFor="let book of author.books">
+        {{errorMessage}}
+        <div class="img-wrapper">
+            <img [src]="'assets/Images/' + book.image" alt="Book image">
+        </div>
+        <div class="book-name">
+            {{book.name}}
+        </div>
+        <div class="book-description">
+            {{book.description}}
+        </div>
+        <div class="book-detail">
+            <span>Genre:</span> {{getName(book.genre)}}
+        </div>
+        <div class="book-detail">
+            <span>Year of edition:</span> {{book.yearOfEdition}}
+        </div>
+        <div class="book-detail">
+            <span>Page amount:</span> {{book.pageAmount}}
+        </div>
+        <div class="book-detail">
+            <span>Authors:</span>
+            <ng-container *ngFor="let author of book.authors; let i = index">
+                {{author.fullName}}{{i < book.authors.length - 1 ? ', ' : '' }} </ng-container>
+        </div>
+        <div class="book-detail">
+            <span>Publisher:</span> {{ book.publisher ? book.publisher.name : 'Book without publisher' }}
+        </div>
+
+
+    </div>
+    {{errorMessage}}
+</div>
+<button class="btn btn-dark" (click)="goBack()">Back</button>

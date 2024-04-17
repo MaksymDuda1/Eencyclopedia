@@ -14,9 +14,9 @@ public class MailService : IMailService
     public void SendRegistrationEmail(string userEmail, string userName)
     {
         var email = new MimeMessage();
-        email.From.Add(MailboxAddress.Parse(userEmail));
+        email.From.Add(MailboxAddress.Parse("Eencyclopedia387@outlook.com"));
         email.To.Add(MailboxAddress.Parse(userEmail));
-        email.Subject = "Test subject";
+        email.Subject = "New registration";
         email.Body = new TextPart(TextFormat.Html)
         {
             Text = $"Hello, {userName}," +
@@ -25,8 +25,8 @@ public class MailService : IMailService
 
         using (var smtp = new SmtpClient())
         {
-            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("emelia.baumbach31@ethereal.email", "Wtvasdm2juws2Fcc6f");
+            smtp.Connect("smtp.outlook.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("Eencyclopedia387@outlook.com", "Deodorantstick1");
             smtp.Send(email);
             smtp.Disconnect(true);
         }

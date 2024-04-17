@@ -11,15 +11,18 @@ import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './books/books.component';
 import { DetailBookComponent } from './books/detail-book/detail-book.component';
 import { FavoriteBooksComponent } from './favorite-books/favorite-books.component';
+import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { PublisherDetailComponent } from './publisher-detail/publisher-detail.component';
 
 const routes: Routes = [
-  {path: "", component: HomeComponent},
-  {path: "login", component: LoginComponent},
-  {path: "registration", component: RegistrationComponent},
-  {path: "books", component: BooksComponent},
-  {path: "books/books-detail/:id", component: DetailBookComponent},
-  {path: "favorite-books", component: FavoriteBooksComponent}
-
+  { path: "", component: HomeComponent },
+  { path: "login", component: LoginComponent },
+  { path: "registration", component: RegistrationComponent },
+  { path: "books", component: BooksComponent },
+  { path: "books/books-detail/:id", component: DetailBookComponent },
+  { path: "favorite-books", component: FavoriteBooksComponent },
+  { path: "author-detail/:id", component: AuthorDetailComponent },
+  { path: "publisher-detail/:id", component: PublisherDetailComponent }
 ];
 
 @NgModule({
