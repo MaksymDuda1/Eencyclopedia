@@ -9,26 +9,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
-  constructor(
-    private localService: LocalService,
-    private bookService: BookService,
-    private sanitizer: DomSanitizer
-  ) { }
+export class HomeComponent {
 
-
-
-  book: BookModel = new BookModel();
-  safeUrl: SafeResourceUrl | null = null;
-
-  getSecureUrl(url: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
-
-  ngOnInit(): void {
-    this.bookService.getById('17a03272-941d-4c4d-ad83-0d6a7d9c5b4b').subscribe(data => {
-      this.book = data;
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.book.path);
-    });
-  }
 }
