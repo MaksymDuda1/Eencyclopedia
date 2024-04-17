@@ -11,7 +11,7 @@ namespace Eencyclopedia.Application.Services;
 
 public class MailService : IMailService
 {
-    public void SendRegistrationEmail(string userEmail, string userName)
+    public async void SendRegistrationEmail(string userEmail, string userName)
     {
         var email = new MimeMessage();
         email.From.Add(MailboxAddress.Parse("Eencyclopedia387@outlook.com"));
@@ -25,10 +25,10 @@ public class MailService : IMailService
 
         using (var smtp = new SmtpClient())
         {
-            smtp.Connect("smtp.outlook.com", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("Eencyclopedia387@outlook.com", "Deodorantstick1");
-            smtp.Send(email);
-            smtp.Disconnect(true);
+            await smtp.ConnectAsync("smtp.outlook.com", 587, SecureSocketOptions.StartTls);
+            await smtp.AuthenticateAsync("Eencyclopedia387@outlook.com", "Deodorantstick1");
+            await smtp.SendAsync(email);
+            await smtp.DisconnectAsync(true);
         }
     }
 }
