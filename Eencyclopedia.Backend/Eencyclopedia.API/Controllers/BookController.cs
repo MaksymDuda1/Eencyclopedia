@@ -51,9 +51,16 @@ public class BookController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<BookDto>> CreateBook([FromForm] CreateBookDto request)
     {
-        var book = await _bookService.CreateBook(request);
+        try
+        {
+            var book = await _bookService.CreateBook(request);
 
-        return Ok(book);
+            return Ok(book);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpPut]

@@ -40,11 +40,6 @@ public class AuthorizationService : IAuthorizationService
             throw new Exception("Incorrect login or password");
 
         var roles = await _userManager.GetRolesAsync(user);
-
-        foreach (var role in roles)
-        {
-            Console.WriteLine(role);
-        }
         
         var claims = await _userManager.GetClaimsAsync(user);
         claims.Add(new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()));

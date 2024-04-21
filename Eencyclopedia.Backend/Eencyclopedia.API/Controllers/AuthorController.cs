@@ -42,9 +42,16 @@ public class AuthorController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<CreateAuthorDto>> CreateAuthor([FromForm] CreateAuthorDto request)
     {
-        var author = await _authorService.CreateAuthor(request);
+        try
+        {
+            var author = await _authorService.CreateAuthor(request);
 
-        return Ok(author);
+            return Ok(author);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpPut]

@@ -19,8 +19,15 @@ public class SearchController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<BookDto>>> SearchBooks([FromQuery] SearchEngineDto searchEngineDto)
     {
-        var books = await _searchEngineService.BookSearch(searchEngineDto);
+        try
+        {
+            var books = await _searchEngineService.BookSearch(searchEngineDto);
 
-        return Ok(books);
+            return Ok(books);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 }
