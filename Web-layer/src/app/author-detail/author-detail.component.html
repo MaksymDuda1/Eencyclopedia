@@ -15,7 +15,7 @@
 
 <div class="container d-flex">
         <span>Author's books:</span>
-    <div class="book" *ngFor="let book of author.books">
+    <div class="book" *ngFor="let book of author.books" [routerLink]="['/books/books-detail', book.id]" >
         {{errorMessage}}
         <div class="img-wrapper">
             <img [src]="'assets/Images/' + book.image" alt="Book image">

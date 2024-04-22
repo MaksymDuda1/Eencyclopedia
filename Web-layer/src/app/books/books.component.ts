@@ -45,7 +45,7 @@ export class BooksComponent implements OnInit {
           this.books = data;
         },
         errorResponse => {
-          this.errorMessage = errorResponse;
+          this.errorMessage = errorResponse.error;
         }
       );
     }

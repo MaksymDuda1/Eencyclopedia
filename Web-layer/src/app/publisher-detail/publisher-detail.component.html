@@ -12,7 +12,7 @@
 
 <div class="container d-flex">
         <span>Publisher's books:</span>
-    <div class="book" *ngFor="let book of publisher.publishedBooks">
+    <div class="book"  *ngFor="let book of publisher.publishedBooks" [routerLink]="['/books/books-detail', book.id]" >
         {{errorMessage}}
         <div class="img-wrapper">
             <img [src]="'assets/Images/' + book.image" alt="Book image">

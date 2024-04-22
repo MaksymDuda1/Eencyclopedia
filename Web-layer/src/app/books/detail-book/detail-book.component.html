@@ -31,7 +31,9 @@
         </div>
         <div class="publisher">
             <span>publisher:</span>
-            <a [routerLink]="['/publisher-detail', book.publisher?.id]">{{ book.publisher ? book.publisher.name : 'book without publisher' }}</a>
+            <a *ngIf="book.publisher" [routerLink]="['/publisher-detail', book.publisher.id]">{{ book.publisher.name
+                }}</a>
+            <span *ngIf="!book.publisher">{{ 'book without publisher' }}</span>
         </div>
         <div class="add-to-favorite" *ngIf="isAuthorized">
             <button (click)="addToFavorite()">{{isFavorite? "Remove from favorite": "Add to favorite"}}</button>

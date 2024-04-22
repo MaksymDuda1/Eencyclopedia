@@ -16,7 +16,7 @@ public class SearchEngineService(IUnitOfWork _unitOfWork, IMapper _mapper) : ISe
 
         var matchingBooks = _mapper.Map<List<BookDto>>(books.Where(b =>
             b.Name.Contains(searchEngineDto.SearchQuery, StringComparison.InvariantCultureIgnoreCase)));
-
+        
         return matchingBooks;
     }
 }

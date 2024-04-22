@@ -13,12 +13,16 @@ export class RegistrationComponent {
     private localService: LocalService
   ){}
 
+  errorMessage: string = '';
   registrationModel = new RegistrationModel();
 
   onRegistration(){
     this.authService.registration(this.registrationModel).subscribe(data =>{
       this.localService.put(LocalService.AuthTokenName, data.token);
       window.location.href = '/';
-    })
+    },
+  errorResponse => {
+    this.errorMessage = errorResponse.error;
+  })
   }
 }

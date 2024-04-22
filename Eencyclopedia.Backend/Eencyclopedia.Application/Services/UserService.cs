@@ -31,16 +31,20 @@ public class UserService(
     
     public async Task<List<BookDto>> GetFavoriteBooks(Guid id)
     {
-        var user = _mapper.Map<UserDto>(await _unitOfWork.Users
-            .GetSingleByConditionAsync(u => u.Id == id,
-                u => u.FavoriteBooks,
-                u => u.BooksUsers));
+        var userBooks = await _unitOfWork.BooksUsers.GetByConditionsAsync(u => u.UserId == id);
+        var favoriteBooks = new List<BookDto>();
         
-        var favoriteBooks = user.FavoriteBooks;
+        foreach (var book in userBooks)
+        {
+            favoriteBooks.Add(_mapper.Map<BookDto>(
+                await _unitOfWork.Books.GetSingleByConditionAsync(b => b.Id == book.BookId,
+                    b => b.Authors,
+                    b => b.Publisher)));
+        }
 
-        if (favoriteBooks == null)
+        if (!favoriteBooks.Any())
             throw new Exception("Your favorite books list is empty");
-        
+
         return favoriteBooks;
     }
 
