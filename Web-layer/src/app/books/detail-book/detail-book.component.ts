@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { BookModel } from '../../../models/bookModel';
 import { BookService } from '../../../services/bookService';
 import { genreValueToString } from '../../../enums/genre';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { LocalService } from '../../../services/localService';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FavoriteBookDto } from '../../../models/addBookToFavorite';
 import { UserService } from '../../../services/user.service';
+import { ImgSanitizerService } from '../../../services/imgSanitizerService';
 
 @Component({
   selector: 'app-detail-book',
@@ -18,7 +19,7 @@ import { UserService } from '../../../services/user.service';
 export class DetailBookComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private bookService: BookService,
-    private sanitizer: DomSanitizer,
+    private sanitizer: ImgSanitizerService,
     private localService: LocalService,
     private jwtHelperService: JwtHelperService,
     private userService: UserService) {
@@ -30,7 +31,6 @@ export class DetailBookComponent implements OnInit {
     })
   }
 
-  private path = '/assets/Images/';
   bookId: string | null = '';
   userId: string = '';
   book: BookModel = new BookModel();
@@ -49,17 +49,16 @@ export class DetailBookComponent implements OnInit {
   getById(id: string) {
     this.bookService.getById(id).subscribe(data => {
       this.book = data;
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.book.path); 
-      this.safeImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.path + this.book.image);
     },
       errorResponse => {
         this.errorMessage = errorResponse.error;
       })
   }
 
-  sanitize(path: string): SafeResourceUrl{
-    return this.sanitizer.bypassSecurityTrustResourceUrl(path);
+  sanitizeImg(img: string): SafeUrl {
+    return this.sanitizer.sanitizeImg(img);
   }
+
 
   addToFavorite() {
     var data = new FavoriteBookDto();

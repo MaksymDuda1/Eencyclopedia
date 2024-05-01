@@ -3,6 +3,8 @@ import { BookService } from '../../../services/bookService';
 import { BookModel } from '../../../models/bookModel';
 
 import { genreValueToString } from '../../../enums/genre';
+import { ImgSanitizerService } from '../../../services/imgSanitizerService';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-books',
@@ -11,13 +13,19 @@ import { genreValueToString } from '../../../enums/genre';
 })
 
 export class AdminBooksComponent implements OnInit {
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService,
+    private sanitizer: ImgSanitizerService
+  ) { }
   
   books: BookModel[] = [];
   erorrMessage: string = '';
 
   getName(genre: number){
     return genreValueToString(genre);
+  }
+
+  sanitizeImg(img: string): SafeUrl {
+    return this.sanitizer.sanitizeImg(img);
   }
 
   delete(id: string) {

@@ -15,7 +15,7 @@
 <div class="container-lg d-flex">
     <div class="book" [routerLink]="'books-detail/' + book.id" *ngFor="let book of books">
         <div class="img-wrapper">
-            <img [src]="'assets/Images/' + book.image" alt="Book image">
+            <img *ngIf="book.image" [src]="sanitizeImg(book.image)" alt="Book image">
         </div>
         <div class="name">
             <span>Name:</span>

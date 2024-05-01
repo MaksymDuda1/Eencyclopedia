@@ -5,7 +5,8 @@ import { PublisherService } from '../../../../services/publisherService';
 import { PublisherModel } from '../../../../models/publisherModel';
 import { ActivatedRoute } from '@angular/router';
 import { genreStringToValue, getGenreOptions } from '../../../../enums/genre';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImgSanitizerService } from '../../../../services/imgSanitizerService';
 
 @Component({
   selector: 'app-book-update',
@@ -16,7 +17,7 @@ export class BookUpdateComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private publisherService: PublisherService,
-    public sanitizer: DomSanitizer,
+    private sanitizer: ImgSanitizerService,
     private route: ActivatedRoute) {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -39,9 +40,11 @@ export class BookUpdateComponent implements OnInit {
   getById(id: string){
     this.bookService.getById(id).subscribe(data => {
       this.book = data;
-      if(this.book.image)
-        this.trustPath = this.sanitizer.bypassSecurityTrustUrl(this.book.image);
     })
+  }
+
+  sanitizeImg(img: string): SafeUrl {
+    return this.sanitizer.sanitizeImg(img);
   }
 
   onUpdate() {

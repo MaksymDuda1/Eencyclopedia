@@ -17,8 +17,8 @@
                 id="description">
         </div>
         <div class="mb-3">
-            <select class="form-select form-select-lg mb-3" aria-label="Large select example" [(ngModel)]="selectedGenre"
-                name="genre">
+            <select class="form-select form-select-lg mb-3" aria-label="Large select example"
+                [(ngModel)]="selectedGenre" name="genre">
                 <option *ngFor="let genre of genres" [value]="genre">
                     {{ genre }}
                 </option>
@@ -36,7 +36,9 @@
         </div>
         <div class="mb-3">
             <label for="Name" class="form-label">Image:</label>
-            <img src="trustPath" alt="">
+            <div class="img-wrapper">
+                <img *ngIf="book.image" [src]="sanitizeImg(book.image)" alt="Book image">
+            </div>
             <input type="file" name="image" class="form-control area" (change)="onFileChange($event)" id="image">
         </div>
         <div class="mb-3">

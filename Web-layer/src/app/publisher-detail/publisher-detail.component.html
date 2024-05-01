@@ -1,6 +1,6 @@
 <div class="container-lg">
     <div class="img-wrapper">
-        <img [src]="'assets/Images/' + publisher.image" alt="qwe">
+        <img *ngIf="publisher.image" [src]="sanitizeImg(publisher.image)" alt="qwe">
     </div>
     <div class="name">
         {{publisher.name}}

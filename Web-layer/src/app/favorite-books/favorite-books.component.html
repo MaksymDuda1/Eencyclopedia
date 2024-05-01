@@ -2,7 +2,7 @@
     {{errorMessage}}
 <div class="book" *ngFor="let book of books" [routerLink]="['/books/books-detail', book.id]">
         <div class="img-wrapper">
-            <img [src]="'assets/Images/' + book.image" alt="qwe">
+            <img *ngIf="book.image" [src]="sanitizeImg(book.image)" alt="qwe">
         </div>
         <div class="name">
             <span>Name:</span>

@@ -19,6 +19,21 @@
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Плавність переходів */
 }
 
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+}
+
+.img-wrapper {
+    max-width: 100px; 
+    max-height: 100px;
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
 .book:hover {
     transform: scale(1.05); /* Збільшення книги при наведенні */
     box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Більша тінь при наведенні */

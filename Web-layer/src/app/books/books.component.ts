@@ -4,6 +4,9 @@ import { BookModel } from '../../models/bookModel';
 import { Genre, genreValueToString } from '../../enums/genre';
 import { SearchService } from '../../services/searchService';
 import { empty } from 'rxjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../services/imageService';
+import { ImgSanitizerService } from '../../services/imgSanitizerService';
 
 @Component({
   selector: 'app-books',
@@ -14,7 +17,9 @@ import { empty } from 'rxjs';
 export class BooksComponent implements OnInit {
 
   constructor(private bookService: BookService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private sanitizer: ImgSanitizerService,
+    private imageService: ImageService
   ) {
 
   }
@@ -22,16 +27,21 @@ export class BooksComponent implements OnInit {
   books: BookModel[] = [];
   errorMessage: string = '';
   searchText: string = '';
+  url: any;
 
   getName(genre: number) {
     return genreValueToString(genre);
   }
 
-  getByGenre(genre: number){
+  getByGenre(genre: number) {
     console.log(genre);
     this.bookService.getByGenre(genre).subscribe(data => {
       this.books = data;
     })
+  }
+
+  sanitizeImg(img: string): SafeUrl {
+    return this.sanitizer.sanitizeImg(img);
   }
 
   searchBooks() {
@@ -50,7 +60,6 @@ export class BooksComponent implements OnInit {
       );
     }
   }
-
   ngOnInit(): void {
     this.bookService.getAll().subscribe(data => {
       this.books = data;

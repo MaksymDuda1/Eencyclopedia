@@ -5,8 +5,8 @@
         "changeOrigin": "true"
     },
 
-    "/images/*": {
-        "target": "file:///home/maksi/Studying/Eencyclopedia/Eencyclopedia.Backend/Eencyclopedia.API/Images",
+    "/Images/*": {
+        "target": "http://localhost:8000",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true

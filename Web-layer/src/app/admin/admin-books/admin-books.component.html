@@ -19,7 +19,7 @@
             <tbody>
 
                 <tr *ngFor="let book of books">
-                    <td><div class="img-wrapper"><img [src]="'assets/Images/' + book.image" alt=""></div></td>
+                    <td><div *ngIf="book.image" class="img-wrapper"><img [src]="sanitizeImg(book.image)" alt=""></div></td>
                     <td>{{book.name}}</td>
                     <td>{{book.description}}</td>
                     <td>{{getName(book.genre)}}</td>

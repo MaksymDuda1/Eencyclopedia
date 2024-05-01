@@ -4,6 +4,8 @@ import { PublisherService } from '../../services/publisherService';
 import { PublisherModel } from '../../models/publisherModel';
 import { genreValueToString } from '../../enums/genre';
 import { Location } from '@angular/common';
+import { ImgSanitizerService } from '../../services/imgSanitizerService';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-publisher-detail',
@@ -13,6 +15,7 @@ import { Location } from '@angular/common';
 export class PublisherDetailComponent {
   constructor(private route: ActivatedRoute,
     private publisherService: PublisherService,
+    private sanitizer: ImgSanitizerService,
     private location: Location
   ) {
     this.route.paramMap.subscribe((params) => {
@@ -25,6 +28,10 @@ export class PublisherDetailComponent {
 
   publisher: PublisherModel = new PublisherModel();
   errorMessage: string = '';
+
+  sanitizeImg(img: string): SafeUrl {
+    return this.sanitizer.sanitizeImg(img);
+  }
 
   getName(genre: number) {
     return genreValueToString(genre);
