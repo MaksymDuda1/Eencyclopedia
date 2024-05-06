@@ -1,57 +1,40 @@
-<div class="container">
-    <div class="book">
-        <div class="img-wrapper">
-            <img *ngIf="book.image" [src]="sanitizeImg(book.image)" alt="qwe">
-        </div>
-        <div class="name">
-            <span>Name:</span>
-            {{book.name}}
-        </div>
-        <div class="desc">
-            <span>description:</span>
-            {{book.description}}
-        </div>
-        <div class="genre">
-            <span>genre:</span>
-            {{getName(book.genre)}}
-        </div>
-        <div class="year">
-            <span>Year of edition:</span>
-            {{book.yearOfEdition}}
-        </div>
-        <div class="page-amount">
-            <span>Page amount:</span>
-            {{book.pageAmount}}
-        </div>
+<div class="book-detail-container d-flex my-5">
 
-        <div class="authors">
-            <span>authors: </span>
-            <a *ngFor="let author of book.authors" [routerLink]="['/author-detail', author.id]">{{author.fullName}}</a>
+    <div class="row">
+        <div class="col">
+            <div class="image-wrapper">
 
+            </div>
         </div>
-        <div class="publisher">
-            <span>publisher:</span>
-            <a *ngIf="book.publisher" [routerLink]="['/publisher-detail', book.publisher.id]">{{ book.publisher.name
-                }}</a>
-            <span *ngIf="!book.publisher">{{ 'book without publisher' }}</span>
-        </div>
-        <div class="add-to-favorite" *ngIf="isAuthorized">
-            <button (click)="addToFavorite()">{{isFavorite? "Remove from favorite": "Add to favorite"}}</button>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    asd
+                </div>
+                <div class="col">
+                    asd
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    asd
+                </div>
+                <div class="col">
+                    asd
+                </div>
+            </div>
         </div>
     </div>
-    {{errorMessage}}
 
-</div>
-
-<div class="container" *ngIf="safeUrl">
-    <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;">
-        <iframe sandbox="allow-scripts" style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;"
-            [src]='safeUrl' seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true"
-            allowfullscreen="true">
-        </iframe>
+    <div class="container" *ngIf="safeUrl">
+        <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;">
+            <iframe sandbox="allow-scripts" style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;"
+                [src]='safeUrl' seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true"
+                allowfullscreen="true">
+            </iframe>
+        </div>
     </div>
-</div>
 
-<div class="error" *ngIf="!safeUrl">
-    <span>Error while dowloading book, please reload the page</span>
-</div>
+    <div class="error" *ngIf="!safeUrl">
+        <span>Error while dowloading book, please reload the page</span>
+    </div>
